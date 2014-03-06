@@ -1,0 +1,14 @@
+<%= f.input :first_name %>
+<%= f.input :last_name %>
+<%= f.input :email %>
+<%= f.input :role, :collection => User::ROLES %>
+
+<% if @user.new_record? %>
+	<%= f.input :password,  
+		:input_html=>{:minLength=>8} %>
+		
+	<%= f.input :password_confirmation,  
+		:hint=>"Repeat the password entered above",
+		:input_html => {"data-validation-matches-match" => "user[password]", 
+		"data-validation-matches-message" => " Must match password above"} %>
+<% end %>

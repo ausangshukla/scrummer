@@ -1,0 +1,73 @@
+<div class="span5">
+	
+	<table class="table table-striped table-bordered">
+		
+			
+	<tr>
+	  <td>Summary:</td>
+	  <td><%= @task.summary %></td>
+	</tr>
+	
+			
+	<tr>
+	  <td>Details:</td>
+	  <td><%= @task.details %></td>
+	</tr>
+	
+			
+	<tr>
+	  <td>Notes:</td>
+	  <td><%= @task.notes %></td>
+	</tr>
+	
+			
+	<tr>
+	  <td>Status:</td>
+	  <td><%= @task.status %></td>
+	</tr>
+	
+			
+	<tr>
+	  <td>Task type:</td>
+	  <td><%= @task.task_type %></td>
+	</tr>
+	
+			
+	<tr>
+	  <td>Assigned to:</td>
+	  <td><%= @task.user.full_name if @task.user %></td>
+	</tr>
+	
+			
+	<tr>
+	  <td>Project:</td>
+	  <td><%= link_to @task.project.name, @task.project %></td>
+	</tr>
+	
+			
+	<tr>
+	  <td>Feature:</td>
+	  <td><%= link_to @task.feature.summary, @task.feature if @task.feature %></td>
+	</tr>
+	
+			
+	<tr>
+	  <td>Planned hours:</td>
+	  <td><%= @task.planned_hours %></td>
+	</tr>
+	
+			
+	<tr>
+	  <td>Actual hours:</td>
+	  <td><%= @task.actual_hours %></td>
+	</tr>
+	
+			
+	<tr>
+	  <td>Remaining hours:</td>
+	  <td><%= @task.remaining_hours %></td>
+	</tr>
+	
+		
+	</table>
+</div>

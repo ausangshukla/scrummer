@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+	<head>
+		<%= render partial:"/layouts/includes"%>
+	</head>
+  <body id="body">
+
+    <%= render :partial=>'/layouts/top_menu' %>
+    <%= render :partial=>'/layouts/alert' %>
+    <%= render :partial=>'/layouts/confirm' %>
+
+    <div class="container-fluid">
+      <% flash.each do |name, msg| %>
+        <div class="alert alert-<%= name == :notice ? "success" : "error" %>">
+          <a class="close" data-dismiss="alert">×</a>
+          <%= msg.html_safe %>
+        </div>
+      <% end %>
+      
+      <div class="row-fluid">
+        <div class="span12">          
+          <%= yield %>
+        </div>
+      </div><!--/row-->
+
+      
+
+    </div> <!-- /container -->
+    
+    <%= render :partial=>'/layouts/footer_menu' %>
+    
+  </body>
+</html>

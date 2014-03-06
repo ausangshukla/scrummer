@@ -1,0 +1,24 @@
+/* Footer */
+#footer {
+	text-align: center;
+	color: #ffffff;
+	text-shadow: 0 1px 0 #000000;
+	font-weight: 200;
+	margin: 10px 0;
+}
+
+#footer.content-aligned {
+	margin: 0px 0px 0px 220px;
+	padding: 20px;
+	position: relative;
+	width: auto;
+	max-width: 1160px;//1280-220
+	min-width: 740px;//960-220
+}
+
+#footer a {
+  color: rgba(255, 255, 255, 0.5);
+}
+#footer a:hover {
+  color: rgba(255, 255, 255, 0.8);
+}

@@ -1,0 +1,46 @@
+<legend>
+	Features
+	<span class="pull-right">
+		<%
+			sprint ||= nil 
+			sprint_id = sprint ? sprint.id : nil 
+		%>
+		<%= link_to "New Feature", new_feature_path("feature[project_id]"=> project.id, "feature[sprint_id]"=> sprint_id), :class=>"btn btn-primary"  if project && can?(:create, Sprint) %>
+	</span>
+
+</legend>
+
+<table class="table row-click table-bordered">
+  <thead>
+    <tr>
+      <th>Summary</th>
+      <th>Sprint</th>
+      <th>Status</th>
+      <th>Priority</th>
+      <th>Points</th>
+      <th>Classification</th>
+      <th>Assigned to</th>
+      <th class="action_col"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% features.each do |feature| %>
+      <tr>
+        <td><%= link_to feature.summary, feature %></td>
+        <td><%= feature.sprint.iteration if feature.sprint %></td>
+        <td><%= feature.status %></td>
+        <td><%= feature.priority %></td>
+        <td><%= feature.points %></td>
+        <td><%= feature.classification %></td>
+        <td><%= feature.user.full_name if feature.user %></td>
+        <td class="center">
+        	<% if can?(:manage, project) %>
+        	<%= link_to 'Edit', edit_feature_path(feature), :class=>"btn btn-mini btn-primary" %>
+        	<%= link_to 'Delete', feature, method: :delete, data: { confirm: 'Are you sure?' } , :class=>"btn btn-mini btn-danger"%>
+        	<% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

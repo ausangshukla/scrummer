@@ -1,0 +1,22 @@
+<div class="span7">
+<%= simple_form_for(@feature) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs form-horizontal"">
+    <%= f.input :summary %>
+    <%= f.input :details %>
+    <%= f.input :acceptance_criteria %>
+    <%= f.input_field :project_id, :as=>:hidden %>
+    <%= f.input :sprint_id, :collection=>@feature.project.sprints.collect{|u| [u.iteration, u.id]} %>
+    <%= f.input :status, :collection=>Feature::STATUSES %>
+    <%= f.input :priority, :collection=>Feature::PRIORITIES %>
+    <%= f.input :points %>
+    <%= f.input :classification, :collection=>Feature::CLASSIFICATIONS %>
+    <%= f.input :assigned_to, :collection=>@feature.project.users.collect{|u| [u.full_name, u.id]} %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.submit "Save", :class=>"btn btn-primary" %>
+  </div>
+<% end %>
+</div>

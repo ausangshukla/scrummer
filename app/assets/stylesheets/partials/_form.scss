@@ -1,0 +1,275 @@
+form {
+	margin-bottom: 0 !important;
+	h2 {
+		margin-top: 0;
+		border-bottom: 0;
+	}
+	abbr[title], abbr[data-original-title] {
+		border-bottom: 0;
+	}
+	label {
+	}
+}
+
+.search_box.client:before {
+	content: "Looking for a client in particular: ";
+}
+
+.search_box.user:before {
+	content: "Looking for a user in particular: ";
+}
+
+.search_box, .add_new {
+	width: auto;
+	padding: 15px;
+	margin: 40px 0px 40px 20px;
+	display:table-cell !important;
+}
+.search_box{
+	background-color:  $fg-tablebg;
+	border: 1px solid $fg-row-border-light;
+	border-right: none;
+	border-bottom: none;
+}
+
+.add_new {
+	border: 1px solid $fg-row-border-light;
+	border-bottom: none;
+}
+
+.action-group {
+	margin: 0;
+	margin-top: 10px;
+}
+
+.heading-short {
+	display:inline-block; 
+	width:360px;
+}
+
+
+.form-horizontal {
+	.radio input[type="radio"], .checkbox input[type="checkbox"] {
+		margin-top: 10px;
+	}
+  .help-block {
+    margin: 0px;
+    color: $redColor;
+    display: inline;
+    ul {
+      display: inline;
+      li {
+        display: inline;
+      }
+    }
+  }
+}
+
+.hint-block {
+	line-height: 1rem !important;
+	margin-bottom: 0;
+}
+
+.control-group {
+
+}
+
+
+
+.account_manager_field {
+  input, select {
+    margin-right: 5px;
+  }
+  
+  .btn {
+    margin-top: 0px;
+  }
+}
+.signin-form {
+	margin-top: 10px;
+}
+	
+.form-standard.form-actions {
+	margin: 0px !important;
+	margin-top: 30px !important;
+}	
+
+.form-horizontal .form-wide.form-actions {
+	margin: 0px !important;
+	margin-top: 30px !important;
+	padding-left: 0 !important;
+}
+
+.form-standard {
+	.radio input[type="radio"], .checkbox input[type="checkbox"] {
+		margin-left: 0;
+		width: auto !important;
+	}
+	input, textarea {
+		width:250px  !important;
+	}
+	input[type="file"] {
+		line-height: 0px;
+	}
+	select.date {
+		width: 80px  !important;
+	}
+	select {
+		width:264px  !important;
+	}
+	input.btn {
+		width: auto !important;
+	}
+	label {
+		font-weight: 600;
+		width: 40% !important;
+		font-size: 1rem !important;
+		padding: 0;
+	}
+	.controls {
+		margin-left: 43%;
+	}
+
+	h1, h2, h3 {
+		text-align: center;
+		border-bottom: none;
+		margin-bottom: 0.25em;
+	}
+	p {
+		text-align: center;
+	}
+	.hint-block {
+		width:264px  !important;
+	}
+
+	
+	.action-buttons {
+		display: inline-block !important;
+		width: 40%;
+		text-align: right;
+	}
+	
+	.pull-right {
+		margin-top: 3px;
+		width: 56%;
+	}
+}
+
+.form-wide {
+	input, textarea {
+		width:350px  !important;
+	}
+	.radio input[type="radio"], .checkbox input[type="checkbox"] {
+		width: auto !important;
+	}
+	input[type="file"] {
+		line-height: 0px;
+	}
+	select.date {
+		width: 80px  !important;
+	}
+	select {
+		width:364px  !important;
+	}
+	input.btn {
+		width: auto !important;
+	}
+	label {
+		width: 32% !important;
+		padding: 0;
+	}
+	.controls {
+		margin-left: 35%;
+	}
+	.form-actions {
+		padding-left:35% !important;
+	}
+	h2, h3, p {
+		text-align: center;
+	}
+
+	.action-buttons {
+		display: inline-block !important;
+		width: 35%;
+		text-align: right;
+	}
+	
+	.pull-right {
+		margin-top: 3px;
+		width: 63%;
+	}
+	
+	.btn.pull-right {
+		margin-top: 3px;
+		width: auto !important;
+	}
+	.hint-block {
+		width:364px  !important;
+		text-align: left;
+	}
+}
+.form-wide.form-centered {
+	label {
+		width: 47% !important;
+	}
+	.controls {
+		margin-left: 50%;
+	}
+	h2, h3 {
+		text-align: center;
+	}	
+	.action-buttons {
+		width: 49%;
+	}
+	
+	.pull-right {
+		width: 50%;
+	}
+}
+#landing_page_form {
+	h1 {
+		text-align: center;
+		font-size: 1.75em;
+		border-bottom: none;
+		margin-top: 0.75em;
+		margin-bottom: 0.25em;
+	}
+}
+
+.form-horizontal .help-block ul li {
+	display: block;
+	margin: 0;
+}
+.help-block {
+	margin: 0;
+	padding:0;
+	ul {
+		margin: 0;
+		padding:0;
+		li {
+			margin: 0;
+			padding:0;
+		}
+	}
+}
+.form-horizontal .help-block {
+	display: block;
+	margin: 0;
+}
+
+.form-footer-links {
+	margin-top: 20px;
+	text-align: center;
+	a {
+		padding: 0 10px;
+		border-right: 1px solid $fg-row-border;
+		display: inline-block;
+		&:hover, &:focus {
+			text-decoration: underline;
+		}
+	}
+	
+	a.last {
+		border-right: none;
+	}
+}

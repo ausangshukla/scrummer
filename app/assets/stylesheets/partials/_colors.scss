@@ -1,0 +1,74 @@
+$fg-blue-very-dark: #132f55;
+$fg-blue-dark:		#1d406f;
+$fg-blue-medium: 	#234d84;
+$fg-blue-light: 	#2d60a4;
+$fg-blue-very-light:#9bbde9;
+$fg-blue-bright: 	#387bd4;
+$fg-light: 			#fbfcfe;
+
+$fg-rowbg-header: 	scale-lightness($fg-blue-light, 90);//lighten($fg-blue-light, 60);//#F7F8FD;
+$fg-tablebg:		scale-lightness($fg-blue-very-light, 99);//#fdfdfe;
+$fg-rowbg-pale: 	scale-lightness($fg-blue-very-light, 97);//#fbfcfe;
+$fg-rowbg-very-pale:scale-lightness($fg-blue-very-light, 99);//#fdfdfe;
+$fg-rowbg-hover-pale: #FFF;
+$fg-row-border-light: scale-lightness($fg-blue-light, 80);//#bbcbdf;
+$fg-row-border: 	 scale-lightness($fg-blue-light, 60);//#d7d7d7;
+
+/* 387bd4 */
+$fg-body-copy-dark: #444;
+$fg-link: 			$fg-blue-light;
+$fg-link-hover: 	$fg-blue-medium;
+
+$fg-risk-unrated: 	#2AA0E3;
+$fg-risk-low: 		#72B057;
+$fg-risk-medium: 	#F58723;
+$fg-risk-high: 		#E54C4C;
+$fg-risk-default: 	#0D233A;
+
+$fg-red: 			#e9322d;
+
+/* #F58723;//#72B057;//#2AA0E3; */
+/* e6e9eb fceded #fef3e9;//#f1f7ee;//#e9f5fc; */
+$bodyBG : lighten(#414042, 0%); //#E4E4E4
+
+$menuBG : #3F3F3F;
+$headerBG : #4E883B;
+$contentBG:#eeefef;
+//$headerBG : #0C0D22;
+
+$headerGradient : white;
+$headerColor : #1B325F;
+$altHeaderColor : headerBG;
+//$menuBG : #394B31;
+$menuColor : white;
+$menuHoverColor : #F58723;
+
+$sidebarBG : #4E883B;
+//$sidebarBG : #0C0D22;
+$sidebarColor : #202020 ;
+
+$contentBG : #f6f6f6;
+$blueColor: #BCD4E6;
+$freshBlue: #0095D7;
+$silverColor: #C0C0C0;
+$green20: #72b057;
+$blue20: #2aa0e3;
+$dark_blue: #0065bd;
+
+$greenColor: #4E883B;
+//$greenColor: #8DC63F;
+$redColor: #CC3333;
+//$orangeColor: #FBB917;
+$orangeColor: #F58723;
+$greyColor: #EEEFEF;
+
+$listHeaderColor : #F58723;
+
+$appFormBG : #fbef99;
+$appFormBorder : #fdd041;
+//$appFormBG : #AAB3AB;
+//$appFormBorder : #fdd041;
+
+$dark_grey_text_color:#444343;
+
+

@@ -1,0 +1,53 @@
+
+<div id="container" class="container-small">
+
+
+<div class="lenderboard-hero">	
+	<div class="client-logo">
+		<% 
+		if resource.borrower?
+			company = resource.client.lender_company  
+			%>
+		<img src="<%= company.logo.url %>" />
+		<% end %>
+		<div class="logos-pull-right"><a href="/"><img src="/assets/LenderBoard_White_Blue_med.png" alt="LenderBoard_Blue_White" width="194" height="45"></a></div>	
+	</div>
+</div>
+
+
+<hr />
+
+<div class="signin-form">
+	
+		<%= simple_form_for resource, :as => resource_name, :url => update_user_confirmation_path, :html => {:method => 'put'}, :id => 'activation-form' do |f| %>
+		<%= devise_error_messages! %>
+		
+		<div class="form-inputs form-horizontal form-standard">
+			<h1><%= resource.full_name if resource.full_name %></h1>
+			<p class="instructions">Please activate your account by choosing a password</p>
+
+
+			<% if @requires_password %>
+			<%= f.input :password,
+	      		:input_html=>{:minLength=>8, :pattern=>EMAIL_REGEXP, "data-validation-pattern-message"=>" include at least one number and one letter"},
+	      		:hint=>"Please choose a safe password that you can remember" %>
+	
+			<%= f.input :password_confirmation, :label=>"Confirm Password",
+	  			:hint=>"Repeat the password entered above",
+	  			:input_html => {"data-validation-matches-match" => "user[password]",
+	    		"data-validation-matches-message" => " Must match password above"} %>
+	
+			<% end %>
+	
+			<%= hidden_field_tag :confirmation_token,@confirmation_token %>
+		</div>
+	
+		<div class="form-actions form-standard">
+			<div class="action-buttons">
+				<%= f.submit "Activate" , :class=>"btn btn-primary btn-large" %>
+			</div>
+		</div>
+	
+		<% end %>
+
+</div>

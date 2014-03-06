@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  summary: MyString
+  details: MyString
+  notes: MyString
+  status: MyString
+  task_type: MyString
+  assigned_to: 1
+  project_id: 1
+  feature_id: 1
+  planned_hours: 1.5
+  actual_hours: 1.5
+  remaining_hours: 1.5
+
+two:
+  summary: MyString
+  details: MyString
+  notes: MyString
+  status: MyString
+  task_type: MyString
+  assigned_to: 1
+  project_id: 1
+  feature_id: 1
+  planned_hours: 1.5
+  actual_hours: 1.5
+  remaining_hours: 1.5

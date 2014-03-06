@@ -1,0 +1,22 @@
+<div class="span7">
+<%= simple_form_for(@task) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs form-horizontal"">
+    <%= f.input :summary %>
+    <%= f.input :details %>
+    <%= f.input :notes %>
+    <%= f.input :status, :collection=>Task::STATUSES %>
+    <%= f.input :task_type, :collection=>Task::TYPES %>
+    <%= f.input :assigned_to, :collection=>@task.project.users.collect{|u| [u.full_name, u.id]} %>
+    <%= f.input_field :project_id, :as=>:hidden %>
+    <%= f.input :feature_id, :collection=>@task.project.features.collect{|u| [u.summary, u.id]} %>
+    <%= f.input :planned_hours %>
+    <%= f.input :actual_hours %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.submit "Save", :class=>"btn btn-primary" %>
+  </div>
+<% end %>
+</div>

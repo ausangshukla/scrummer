@@ -1,0 +1,55 @@
+<div class="navbar navbar-fluid-top navbar-inverse">
+	<div class="navbar-inner">
+		<div class="container-fluid">
+			<a class="btn btn-navbar" data-target=".nav-collapse" data-toggle="collapse"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </a>
+			<a class="brand" href="/">Scrummer</a>
+			<div class="container-fluid nav-collapse pull-right">
+				<ul class="nav">
+
+					<% if current_user %>
+					<% case current_user.role %>
+					<% when "Team Member" %>
+					<%= render :partial=>'/layouts/team_member_menu' %>
+					<% when "Scrum Master" %>
+					<%= render :partial=>'/layouts/manager_menu' %>
+					<% end %>
+
+					<li class='divider-vertical'></li>
+					<li>
+						<%= link_to destroy_user_session_path, :title=>'Sign Out' do %>
+						<i class="icon icon-lock"></i>
+						Sign Out
+						<% end %>
+					</li>
+
+					<li class='divider-vertical'></li>
+					<li>
+						<%= link_to user_path(current_user), :title=>'User Profile' do %>
+						<i class="icon icon-user"></i>
+						<%= current_user.first_name %>
+						<% end %>
+					</li>
+
+					<% else %>
+					<li class='divider-vertical'></li>
+					<li>
+						<%= link_to new_user_session_path, :title=>'Sign In' do %>
+						<i class="icon icon-lock"></i>
+						Sign In
+						<% end %>
+					</li>
+					<li class='divider-vertical'></li>
+					<li>
+						<%= link_to new_user_registration_path, :title=>'Sign Up' do %>
+						<i class="icon icon-pencil"></i>
+						Sign Up
+						<% end %>
+					</li>
+					<% end %>
+
+				</ul>
+
+			</div><!--/.nav-collapse -->
+		</div>
+	</div>
+</div>

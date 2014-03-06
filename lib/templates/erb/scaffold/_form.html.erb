@@ -1,0 +1,15 @@
+<div class="span7">
+<%%= simple_form_for(@<%= singular_table_name %>) do |f| %>
+  <%%= f.error_notification %>
+
+  <div class="form-inputs form-horizontal"">
+  <%- attributes.each do |attribute| -%>
+    <%%= f.<%= attribute.reference? ? :association : :input %> :<%= attribute.name %> %>
+  <%- end -%>
+  </div>
+
+  <div class="form-actions">
+    <%%= f.submit "Save", :class=>"btn btn-primary" %>
+  </div>
+<%% end %>
+</div>

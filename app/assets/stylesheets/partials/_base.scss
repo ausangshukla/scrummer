@@ -1,0 +1,167 @@
+
+
+/*********************
+01. GENERAL STYLES
+*********************/
+
+html, body {
+	margin: 0 auto;
+}
+
+body {
+	font-family: $main-font;
+	line-height: normal !important;
+	color: $fg-body-copy-dark;
+}
+
+p {
+	margin-bottom: 20px;
+}
+#logo-print {
+	display: none;
+}
+.desktop-hidden {
+	display: none;
+}
+/*
+hr {
+	margin: 10px 0;
+}
+*/
+
+/******************************************************************
+03. H1, H2, H3, H4, H5 STYLES
+******************************************************************/
+
+h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5 {
+	font-family: $main-font;
+	font-weight: 300;
+	color: $fg-blue-light;//$fg-blue-medium;
+	margin-bottom: auto;
+	/* removing text decoration from all headline links */
+	a {
+		text-decoration: none;
+	}
+}
+
+h1, .h1 {
+	font-size: 2em;
+	line-height: 1.75em;
+	font-weight: 400;
+	margin-top: 0.375em;
+	margin-bottom: 0.75em;
+	border-bottom: 1px solid $fg-row-border-light;
+}
+
+h2, .h2 {
+	font-size: 1.75em;
+	line-height: 1.4em;
+	margin-top: 0.5em;
+	margin-bottom: 0.75em;
+	border-bottom: 1px dotted $fg-row-border-light;
+}
+
+h3, .h3 {
+	font-size: 1.25em;
+	margin-bottom: 0.25em;
+}
+
+h4, .h4 {
+	font-size: 1.1em;
+	font-weight: 700;
+}
+
+h5, .h5 {
+	font-size: 0.846em;
+	line-height: 2.09em;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+}
+
+/******************************************************************
+03. list STYLES
+******************************************************************/
+ol > li {
+	margin: 20px;
+}
+ol.little-letters {
+	list-style: lower-alpha;	
+}
+
+legend {
+	font-weight: 300;
+}
+
+.padded {
+	padding:20px;
+}
+
+.modal {
+	.modal-header {
+		border-bottom: 0;
+		margin-bottom: 0;
+		padding-bottom: 0;
+	}
+	h2, .h2 {
+		padding-bottom: 0.125em;
+		margin-bottom: 0.25rem;
+		font-weight: 400;
+	}
+}
+
+.alert {
+	border-radius: 0;
+	text-shadow:none;
+	h3, .h3 {
+		margin-top: 0;
+		line-height: 1.5em;
+		font-size: 1.25rem !important;
+		font-weight: 400;
+	}
+	p {
+		font-size: 1rem !important;
+	}
+}
+.alert-error, .alert-success {
+	color: $fg-body-copy-dark !important;
+}
+
+.instructions {
+	font-weight: 300;
+	color: $fg-blue-light;
+	font-size: 1.25em;
+	margin-bottom: 30px;
+}
+
+.btn, .btn-primary {
+	min-width: 50px;
+}
+.btn:visited:hover {
+	color: white !important;
+}
+
+.danger {
+	color: $fg-red;
+}
+.popover {
+	width: 350px !important;
+	max-width: 350px !important;
+}
+.popover-link {
+	font-size: 1.3rem;
+}
+
+.popover-title {
+	font-size: 1.2rem;
+	line-height: 1.25rem;
+	padding: 12px 14px;
+}
+.popover-content {
+	p {
+		margin: 7px auto;
+		color:  $fg-blue-light;	
+		font-size: 0.9rem !important;
+		line-height: 1.25rem;
+		font-weight: 400;
+	}
+}

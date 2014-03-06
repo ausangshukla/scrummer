@@ -1,0 +1,18 @@
+<div class="span7">
+<%= simple_form_for(@sprint) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs form-horizontal"">
+    <%= f.input :iteration %>
+    <%= f.input :start_date %>
+    <%= f.input :end_date %>
+    <%= f.input :notes %>
+    <%= f.input :rag_status, :collection=>Project::RAG_STATUSES %>
+    <%= f.input_field :project_id, :as=>:hidden %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.submit "Save", :class=>"btn btn-primary" %>
+  </div>
+<% end %>
+</div>

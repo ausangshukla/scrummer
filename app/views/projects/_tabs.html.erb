@@ -1,0 +1,48 @@
+<div class="navbar">
+	<div class="navbar-inner navbar-lb">
+		<ul id="projectTab" class="nav pull-right" >
+			
+			<li class="<%= active_tab_class(params, 'features_view', true) %>">
+				<a id="features_view_tab" href="#features_view"  ajaxurl="/features?project_id=<%=@project.id%>container=credits&layout=none" data-toggle="tab">Features</a>
+			</li>
+
+			<li class="<%= active_tab_class(params, 'tasks_view') %>" >
+				<a id="tasks_view_tab" href="#tasks_view" ajaxurl="/tasks?project_id=<%=@project.id%>container=credits&layout=none" data-toggle="tab">Tasks</a>
+			</li>
+			
+			<li class="<%= active_tab_class(params, 'sprints_view') %>">
+				<a id="sprints_view_tab" href="#sprints_view"  ajaxurl="/sprints?project_id=<%=@project.id%>container=credits&layout=none" data-toggle="tab">Sprints</a>
+			</li>
+
+		</ul>
+	</div>
+</div>
+
+<div id="projectTabContent" class="tab-content">
+
+	<div class="tab-pane fade in <%= active_tab_class(params, 'sprints_view') %>" id="sprints_view">
+		
+	</div>
+
+	<div class="tab-pane fade in <%= active_tab_class(params, 'features_view', true) %>" id="features_view">
+		<%= render partial: "/features/index", locals: {features: @project.features, project: @project} %>
+	</div>
+
+	<div class="tab-pane in fade <%= active_tab_class(params, 'tasks_view') %>" id="tasks_view">
+		
+	</div>
+
+</div>
+
+<input id="currTab" value="<%= params[:tab] %>" class="hidden" />
+
+<script>
+	$(function() {
+		app.ajaxTabs("#projectTab");
+		app.debug("got " + $("#currTab").val());
+		if ($("#currTab").val() && $("#currTab").val().length > 0) {
+			app.debug("clicking " + "#" + $("#currTab").val());
+			$("#" + $("#currTab").val()).click();
+		}
+	}); 
+</script>

@@ -1,0 +1,42 @@
+
+<div id="container" class="container-small">
+
+
+<div class="lenderboard-hero">
+	<div class="client-logo">
+		<% 
+			if resource.borrower?
+				company = resource.client.lender_company  
+		%>
+		<img src="<%= company.logo.url %>" />
+		<% end %>
+		<div class="logos-pull-right"><a href="/"><img src="/assets/LenderBoard_White_Blue_med.png" alt="LenderBoard_Blue_White" width="194" height="45"></a></div>
+	</div>
+</div>
+
+
+<hr />
+
+<div class="signin-form">
+	
+	<%= simple_form_for(resource, :as => resource_name, :url => confirmation_path(resource_name), :html => { :method => :post }) do |f| %>
+	<%= f.error_notification %>
+	<%= f.full_error :confirmation_token %>
+
+	<div class="form-inputs form-horizontal form-standard">
+		<h1>Resend confirmation instructions</h1>
+		<%= f.input :email, :required => true, :autofocus => true %>
+	</div>
+
+	<div class="form-actions form-standard">
+		<div class="action-buttons">
+			<%= f.button :submit, "Resend Instructions", :class=>"btn btn-primary  btn-large" %>
+		</div>
+		<div class="pull-right">
+			<%= render "devise/shared/links" %>
+		</div>
+	</div>
+	
+	<% end %>
+
+</div>

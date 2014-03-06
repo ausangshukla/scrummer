@@ -1,0 +1,27 @@
+<h1>Change Password</h1>
+
+<%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs form-horizontal">
+  	
+    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+      <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
+    <% end %>
+
+    <%= f.input :password, :autocomplete => "off", 
+    	:input_html=>{:minLength=>8, :pattern=>EMAIL_REGEXP, "data-validation-pattern-message"=>" include at least one number and one letter"}, 
+    	:hint => "Select a new password", :required => true %>
+    	
+    <%= f.input :password_confirmation,  
+		:hint=>"Repeat the password entered above",
+		:input_html => {"data-validation-matches-match" => "user[password]", 
+		"data-validation-matches-message" => " Must match password above"} %>
+		
+    <%= f.input :current_password, :hint => "we need your current password to confirm your changes", :required => true %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, "Update", class:"btn btn-primary" %>
+  </div>
+<% end %>

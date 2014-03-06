@@ -1,0 +1,28 @@
+<div class="">
+	<legend>
+		<%= @sprint.project.name %> : Iteration <%= @sprint.iteration %>
+	</legend>
+	<table class="table table-bordered">
+
+		<tr>
+			<td>Iteration:</td>
+			<td><%= @sprint.iteration %></td>
+			<td>Rag status:</td>
+			<td><%= @sprint.rag_status %></td>
+			<td>Project:</td>
+			<td><%= link_to @sprint.project.name, @sprint.project  %></td>
+			<td>Start date:</td>
+			<td><%= @sprint.start_date %></td>
+			<td>End date:</td>
+			<td><%= @sprint.end_date %></td>
+		</tr>
+
+		<tr>
+			<td>Notes:</td>
+			<td colspan="9"><%= @sprint.notes %></td>
+		</tr>
+
+	</table>
+</div>
+
+<%= render partial: "/features/index", locals: {features: @sprint.features, project: @sprint.project, sprint: @sprint} %>

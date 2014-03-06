@@ -1,0 +1,74 @@
+.chart-row {
+	overflow: auto;
+	width: 100%;
+}
+
+.lb_chart {
+  margin: 20px 0px;
+}
+
+.dbt_box {
+	top: 0px !important;
+	font-size: 0.9em !important;
+}
+
+#funnel_container {
+	min-width: 350px; 
+	width:100%; 
+	max-width: 500px; 
+	height: 300px; 
+	margin: 0;
+	margin-bottom: 20px;
+	margin-left: 20px;
+	margin-top: -5px;
+}
+
+#count_by_date_container {
+	height: 300px; 
+	min-width: 300px; 
+	width:100%; 
+	max-width: 500px; 
+	margin: 0;
+}
+
+#risk_line_container {
+	min-width: 350px;
+	width:100%;
+	max-width: 500px;
+}
+
+#receivables_aging_pie_container {
+	height: 300px; 
+	min-width: 300px !important; 
+	width:auto !important; 
+	max-width: 500px !important;
+}
+
+#receivables_aging_container,#client_delinquent_pie {
+	height: 300px; 
+	min-width: 300px; 
+	width:100%; 
+	max-width: 450px; 
+}
+
+#client_risk_pie, #client_risk_line {
+	height: 400px; 
+	min-width: 400px; 
+	width:100%; 
+	max-width: 600px; 
+}
+
+#cust_top_3, #cust_top_3_pie {
+	padding-left: 20px;
+	height: 300px !important; 
+	min-width: 300px !important; 
+	width:auto !important; 
+	max-width: 450px !important;
+	margin: 0 auto !important;
+}
+
+h2.chart-header {
+	margin-left: 20px;
+	border-bottom: none; 
+	margin-bottom: 0.25em;
+}

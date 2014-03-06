@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  summary: MyString
+  details: MyString
+  acceptance_criterai: MyString
+  project_id: 1
+  status: MyString
+  priority: MyString
+  points: 1.5
+  classification: MyString
+  assigned_to: 1
+
+two:
+  summary: MyString
+  details: MyString
+  acceptance_criterai: MyString
+  project_id: 1
+  status: MyString
+  priority: MyString
+  points: 1.5
+  classification: MyString
+  assigned_to: 1

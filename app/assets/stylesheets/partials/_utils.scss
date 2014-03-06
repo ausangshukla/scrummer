@@ -1,0 +1,180 @@
+body {
+  min-width: 900px;
+}
+
+.version_change {
+  color: $green20;  
+}
+
+th .current {
+  padding-right: 12px;
+  background-repeat: no-repeat;
+  background-position: right center;
+}
+
+th .asc {
+  background-image: url(/assets/up_arrow.gif);
+}
+
+th .desc {
+  background-image: url(/assets/down_arrow.gif);
+}
+
+.chart_left {
+    float:left;
+    width:50%;
+}
+.chart_right {
+    float:right;
+    width:50%;
+}
+
+
+#devise_links {
+  a {
+    display: block;
+  }
+}
+
+
+/*
+.pagination {
+  margin: 0px;
+}
+
+.pagination_div_info {
+  font-size: 0.7em;
+}
+*/
+
+.pagination_div_info {
+	padding: 10px !important;
+}
+
+table {
+  .action_col {
+    width: 200px;
+  }
+  
+  .desc_col {
+    width:40%;
+  }
+}
+
+.center_table {
+  width: 100%;
+  table-layout: fixed;
+  td, th {
+   text-align:center;
+  }
+ }
+
+
+select.date {
+  width: 80px;
+}
+
+.btn_div {
+	text-align:center;
+	margin: auto;
+}
+
+.btn_div_full {
+	text-align:center;
+	margin: auto;
+	width: 100%;
+}
+
+.arrow {
+	padding-right:5px;
+}
+
+
+.error_border {
+   border: 1px solid $redColor !important;
+}
+
+.hint-block, .help-block, .help_text {
+  margin-top: 3px;
+	font-size:10px;
+	line-height: 1em;
+	color: grey;
+}
+ 	
+.center {
+ margin: auto !important;
+ text-align: center !important;
+}
+
+.left {
+ margin-left: auto;
+ margin-right: auto;
+ text-align: left !important;
+}
+
+.hidden {
+ display:none;
+ visibility: hidden;
+ width:0px !important;
+ height:0px !important;
+}
+
+
+
+.white_text {
+	color: white !important;
+}
+
+.red_text {
+	color: $redColor;
+}
+
+.green_text {
+	color: $greenColor;
+}
+
+.orange_text {
+	color: $orangeColor;
+}
+
+.grey_text {
+	color: grey;
+}
+
+.blue_text {
+	color: $blueColor;
+}
+
+.green20_text {
+	color: darken($green20, 10%);
+}
+
+.blue20_text {
+	color: $blue20;
+}
+
+.dark_blue_text {
+	color: lighten($dark_blue, 10%);
+}
+
+
+.blockUI {
+  h1 {
+    color:white;
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+  border: 0px; 
+  padding: 15px; 
+  -webkit-border-radius: 10px; 
+  -moz-border-radius: 10px;
+  opacity: .7; 
+  background: url(/assets/ajax-loader2.gif) no-repeat center bottom; 
+}
+
+.dbt_box {
+  position:relative; 
+  top:70px; 
+  z-index: 10; 
+  font-size: .7em;
+}

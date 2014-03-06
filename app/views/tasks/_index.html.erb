@@ -1,0 +1,47 @@
+<legend>
+	Tasks
+	<span class="pull-right">
+		<%
+			feature ||= nil 
+			feature_id = feature ? feature.id : nil 
+		%>
+		<%= link_to "New Task", new_task_path("task[project_id]"=> project.id, "task[feature_id]"=> feature_id), :class=>"btn btn-primary"  if project && can?(:create, Task) %>
+	</span>
+</legend>
+
+<table class="table row-click table-bordered">
+  <thead>
+    <tr>
+      <th>Summary</th>
+      <th>Status</th>
+      <th>Task type</th>
+      <th>Assigned to</th>
+      <th>Feature</th>
+      <th>Planned hours</th>
+      <th>Actual hours</th>
+      <th>Remaining hours</th>
+      <th class="action_col"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% tasks.each do |task| %>
+      <tr>
+        <td><%= link_to task.summary, task %></td>
+        <td><%= task.status %></td>
+        <td><%= task.task_type %></td>
+        <td><%= task.user.full_name if task.user %></td>
+        <td><%= task.feature.summary if task.feature %></td>
+        <td><%= task.planned_hours %></td>
+        <td><%= task.actual_hours %></td>
+        <td><%= task.remaining_hours %></td>
+        <td class="center">
+        	<% if can?(:manage, task) %>
+        	<%= link_to 'Edit', edit_task_path(task), :class=>"btn btn-mini btn-primary" %>
+        	<%= link_to 'Delete', task, method: :delete, data: { confirm: 'Are you sure?' } , :class=>"btn btn-mini btn-danger"%>
+        	<% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -1,0 +1,40 @@
+<legend>
+	Sprints
+
+	<span class="pull-right">
+		<%= link_to "New Sprint", new_sprint_path("sprint[project_id]"=> project.id), :class=>"btn btn-primary"  if project && can?(:create, Sprint) %>
+	</span>
+</legend>
+
+<table class="table row-click table-bordered">
+  <thead>
+    <tr>
+      <th>Iteration</th>
+      <th>Start date</th>
+      <th>End date</th>
+      <th>Notes</th>
+      <th>Rag status</th>
+      <th class="action_col"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% sprints.each do |sprint| %>
+      <tr>
+        <td><%= link_to sprint.iteration, sprint %></td>
+        <td><%= sprint.start_date %></td>
+        <td><%= sprint.end_date %></td>
+        <td><%= sprint.notes %></td>
+        <td><%= sprint.rag_status %></td>
+        <td class="center">
+        	<% if can?(:manage, sprint) %>
+        	<%= link_to 'Edit', edit_sprint_path(sprint), :class=>"btn btn-mini btn-primary" %>
+        	<%= link_to 'Delete', sprint, method: :delete, data: { confirm: 'Are you sure?' } , :class=>"btn btn-mini btn-danger"%>
+        	<% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+

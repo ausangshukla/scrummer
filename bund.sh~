@@ -1,0 +1,5 @@
+#!/bin/bash
+bundle 
+while [ $? -ne 0 ]; do
+  bundle 
+done

@@ -1,0 +1,30 @@
+//@import url("https://fonts.googleapis.com/css?family=Open+Sans: 300italic,400italic,600italic,700italic,300,400,600,700");
+
+$menu-font: "Open Sans", 'Helvetica Neue', sans-serif;//Helvetica, Arial, sans-serif;
+$main-font: "Open Sans", 'Helvetica Neue', sans-serif;
+$chart-font: "Open Sans", 'Helvetica Neue', sans-serif;
+$header-font: "Open Sans", 'Helvetica Neue', sans-serif;
+
+$default-text-shadow-color: rgba($fg-blue-very-dark, 1);
+$default-text-shadow-blur: 3px;
+$default-text-shadow-v-offset: 1px;
+
+/*
+$largeFont : 1.5em;
+$mediumFont : 1.3em;
+$mediumSmallFont : 1.2em;
+$normalFont : 1em;
+$smallFont : .5em;
+*/
+
+/*
+$headerFont: 20px;
+$regularFont: 14px;
+$regularSmallFont: 11px;
+*/
+
+.help-inline {
+  font-size: 0.7em;
+}
+
+

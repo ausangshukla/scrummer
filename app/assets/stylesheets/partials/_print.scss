@@ -1,0 +1,223 @@
+//
+// Basic print styles
+// --------------------------------------------------
+// Source: https://github.com/h5bp/html5-boilerplate/blob/master/css/main.css
+
+   
+@media print {
+
+	table { 
+		page-break-after:auto; 	
+	}
+	
+	tr { 
+		page-break-inside:avoid; 
+		page-break-after:auto;
+	}
+	
+	td { 
+		page-break-inside:avoid; 
+		page-break-after:auto;
+	}
+
+	.print-page-break {
+		page-break-before: always;
+	}
+		
+	#logo-print {
+		display: inline !important;
+	}
+	#logo {
+		display: none;
+	}
+	#footer {
+		text-align: center;
+		color:  $fg-blue-dark;
+		text-shadow: none;
+		font-weight: 200;
+	}
+	
+	#footer.content-aligned {
+		margin: 0px;
+		padding: 20px;
+		position: relative;
+		width: auto;
+		max-width: auto;
+		min-width: auto;
+	}
+
+	h2.chart-header {
+			margin: 0 !important;
+			padding:0 !important;
+	}
+	
+	.desktop-hidden {
+		display: inline;
+	}
+	
+	hr.desktop-hidden {
+		display: block;
+	}
+	
+	.highcharts-button {
+		display: none;
+	}
+	h2 {
+		border-bottom: none;
+	}
+	div[class^="span"] {
+		margin: 0 !important;
+		padding:0 !important;
+		display: inline-block !important;
+		float: none !important;		
+		overflow:hidden;
+	}  
+	
+	.span6 {
+		width: 49% !important;
+		table {
+			width:90% !important;
+		}
+	}
+
+	.row-fluid {
+		clear: both;
+		margin: 0 !important;
+		padding:0 !important;
+
+	}
+	#header {
+	  background: none;
+	  h3, a, a:hover {
+			color: $fg-blue-dark;
+		}
+  }
+  #content {
+	  margin: 0;
+  }
+  #container {
+    margin: 5px;
+  }
+  .center, .highcharts-container {
+    margin: auto;
+    text-align: center;
+  }
+  
+  table {
+    margin: auto 0;
+  }
+	
+	.row-click {  
+		tr.hover, tr.hover.unrated, tr.hover.low_risk, tr.hover.medium_risk, tr.hover.high_risk, tr.hover.delinquent_default {
+			background: auto;
+			border-bottom: none !important;
+		}	
+	}
+	
+  * {
+    text-shadow: none !important;
+    color: #000 !important; // Black prints faster: h5bp.com/s
+    background: transparent !important;
+    box-shadow: none !important;
+  }
+
+  a,
+  a:visited {
+/*     text-decoration: underline; */
+  }
+
+  a[href]:after {
+    content: " (" attr(href) ")";
+  }
+
+  abbr[title]:after {
+    content: " (" attr(title) ")";
+  }
+
+  // Don't show links for images, or javascript/internal links
+  .ir a:after,
+  a[href^="javascript:"]:after,
+  a[href^="#"]:after {
+    content: "";
+  }
+
+  pre,
+  blockquote {
+    border: 1px solid #999;
+    page-break-inside: avoid;
+  }
+
+  thead {
+    display: table-header-group; // h5bp.com/t    
+  }
+
+         
+  table {
+    tr {
+	border: 1px solid #e6e9eb;
+      th {
+        background: white !important;
+        border: none !important;
+        -webkit-border-top-left-radius: 0px;
+        -moz-border-radius-topleft: 0px;
+        border-top-left-radius: 0px;
+        -webkit-border-top-right-radius: 0px;
+        -moz-border-radius-topright: 0px;
+        border-top-right-radius: 0px;
+      }
+      td {
+	      border: none !important;
+      }
+    }
+	tr.delinquent_default {
+		background: lighten($fg-risk-high, 37%) !important;
+	}
+  }
+   
+  tr,
+  img {
+    page-break-inside: avoid;
+  }
+
+  img {
+    max-width: 100% !important;
+  }
+
+  @page {
+    margin: 0.5cm;
+  }
+
+  p,
+  h2,
+  h3 {
+    orphans: 3;
+    widows: 3;
+  }
+
+  h2,
+  h3 {
+    page-break-after: avoid;
+  }
+  
+  
+	//items to hide
+	#sidebar,  #user-nav, .btn, .pagination_div_links, .pagination_div_info, .search_box, textarea, input, .action-group, .print-hidden {
+		display: none !important;
+	}
+  
+  
+  a[href]:after {
+    content: none;
+  }
+  
+	.chart_left {
+		float:left;
+		width:47%;
+	}
+	
+	.chart_right {
+		float:right;
+		width:47%;
+	} 
+  
+}

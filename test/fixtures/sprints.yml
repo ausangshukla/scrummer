@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  iteration: 1
+  start_date: 2014-03-05
+  end_date: 2014-03-05
+  notes: MyText
+  rag_status: MyString
+  project_id: 1
+
+two:
+  iteration: 1
+  start_date: 2014-03-05
+  end_date: 2014-03-05
+  notes: MyText
+  rag_status: MyString
+  project_id: 1

@@ -1,0 +1,28 @@
+<div class="span7">
+<%= simple_form_for(@project_user_mapping) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs form-horizontal"">
+  	<% user_name = @project_user_mapping.user ? @project_user_mapping.user.full_name : nil %>
+    <%= f.input :user, :as=>:fake, :placeholder=>"Search by name or email", :input_html=>{:value=>user_name} %>
+    <%= f.input_field :project_id, :as=>:hidden %>
+    <%= f.input_field :user_id, :as=>:hidden %>
+    <%= f.input :role, :collection=>User::ROLES %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.submit "Save", :class=>"btn btn-primary" %>
+  </div>
+<% end %>
+</div>
+
+<script>
+	$(function() {
+		
+		function userSelected(user) {
+			$("#project_user_mapping_user_id").val(user.id)	
+		}
+		
+		app.initUserTypeAhead($("#user"), userSelected);
+	});
+</script>

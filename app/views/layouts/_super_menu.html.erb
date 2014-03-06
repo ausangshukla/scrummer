@@ -1,0 +1,74 @@
+<li> 
+	<%= link_to "/", :title=>"Dashboard" do %> 
+	<i class="icon icon-list-alt"></i>
+	  Dashboard
+	<% end %>
+</li>
+
+<li class='divider-vertical'></li>
+
+<li class="dropdown">
+   	<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+   	  <i class="icon icon-briefcase"></i>
+	   Company
+	   <b class="caret"></b>
+	 </a>
+	 <ul class="dropdown-menu">
+	   	<li> <%= link_to "View Companies", companies_path %> </li>			      
+	   	<li> <%= link_to "New Company Setup", new_company_path %> </li>
+	   	<li> <%= link_to "View Designated Reps", desig_reps_users_path %> </li>
+	 </ul>
+</li>
+
+<li class='divider-vertical'></li>
+
+<li class="dropdown">
+   	<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+   	  <i class="icon icon-user"></i>
+	  Staff
+	  <b class="caret"></b>
+	</a>
+	 <ul class="dropdown-menu">
+	   <li> <%= link_to "All Staff", users_path %> </li>
+	   <li> <%= link_to "Non-Compliant Staff", users_path(:compliance_status=>User::CPD_NON_COMPLIANT) %> </li>
+	   <li> <%= link_to "Compliant Staff", users_path(:compliance_status=>User::CPD_COMPLIANT) %> </li>
+	   <li class="divider"></li>
+	   <li> <%= link_to "Not Covered", users_path(:covered_person=>"Not Covered") %> </li>
+	   <li class="divider"></li>
+	   <li> <%= link_to "New Covered Person", new_user_path %> </li>
+	   <li> <%= link_to 'Upload Covered Persons', import_form_users_path("company_id"=>current_user.company_id) %> </li>
+	 </ul>
+</li>
+	   
+
+<li class='divider-vertical'></li>
+
+<li class="dropdown">
+   	<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+   	  <i class="icon icon-calendar"></i>
+	   Trainings
+	   <b class="caret"></b>
+	 </a>
+	 <ul class="dropdown-menu">
+	   	<li> <%= link_to "View Training Records", trainings_path %> </li>
+	   	<li> <%= link_to "Upload Training Records", import_form_trainings_path("company_id"=>current_user.company_id) %> </li>
+	 </ul>
+</li>
+
+<li class='divider-vertical'></li>
+<li> 
+	<%= link_to report_form_companies_path, :title=>"Reports" do %> 
+	<i class="icon icon-signal"></i>
+	  Reports
+	<% end %>
+</li>
+
+<% if SPHINX_ENABLED %>
+<li class='divider-vertical'></li>
+<li>
+  	<form class="navbar-search" action="/search" method="GET">
+	<input name="term" type="text" class="search-query input-small" placeholder="Search">
+	</form>
+</li>
+<% end %>
+	   

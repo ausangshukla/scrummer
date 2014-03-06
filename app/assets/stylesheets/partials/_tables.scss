@@ -1,0 +1,15 @@
+
+.row-click {  
+	thead > tr.hover {
+		cursor: auto;
+		border: none;
+	}
+	tr.hover {
+		cursor: pointer;
+		background: lighten($fg-risk-unrated, 43%);
+		border-bottom: 1px solid $fg-risk-unrated;
+	}
+	
+
+}
+	

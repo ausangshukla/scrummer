@@ -1,0 +1,26 @@
+
+<div id="container" class="container-small">
+
+	<div class="signin-form span5">
+		
+		<%= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+	
+		<div class="form-inputs form-horizontal form-standard">
+			<h1>Sign In</h1>
+			<%= f.input :email, :required => true, :autofocus => true %>
+			<%= f.input :password, :required => true %>
+		</div>
+	
+		<div class="form-actions form-standard">
+			<div class="action-buttons">
+				<%= f.submit "Sign In", :class=>"btn btn-primary btn-large", :style=>"width:150px;", :id=>"login_btn" %>
+			</div>
+			<div class="pull-right">
+				<%= render "devise/shared/links" %>
+			</div>
+		</div>
+		<% end %>
+	</div>
+
+
+</div>
