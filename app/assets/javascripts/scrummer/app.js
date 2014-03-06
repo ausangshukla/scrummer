@@ -100,8 +100,10 @@ var app = {
 					}
 				}
 				$.unblockUI();
+				app.init($(targetID));
 			});
 		}
+		
 
 	},
 	ajaxTabs : function(tab_id) {
@@ -155,8 +157,8 @@ var app = {
 		$("#confirmDialog #confirmCancelBtn").bind('click', cancelCallback);
 	},
 
-	init : function() {
-		$("input,select,textarea").not("[type=submit]").jqBootstrapValidation();
+	init : function(div) {
+		$(div).find("input,select,textarea").not("[type=submit]").jqBootstrapValidation();
 
 		$("html").bind("ajaxStart", function() {
 			$(this).addClass('busy');
@@ -166,13 +168,13 @@ var app = {
 
 		$(document).ajaxStop($.unblockUI);
 
-		app.rowClick();
+		app.rowClick(div);
 
 		$("[title]").tooltip();
 	},
 
-	rowClick : function() {
-		$('.row-click tr').click(function(e) {
+	rowClick : function(div) {
+		$(div).find('.row-click tr').click(function(e) {
 			if ($(this).find('a').attr('data-method') !== "put" && $(e.target).is("td")) {
 				loc = $(this).find('a').attr('href');
 				if (loc) {
@@ -256,7 +258,7 @@ var app = {
 jQuery(function() {
 
 	app.debug("jQuery init");
-	app.init();
+	app.init($("#body"));
 
 	// IE quirk - Array.indexOf is not defined - so define it
 	if (!Array.indexOf) {

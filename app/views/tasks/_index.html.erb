@@ -26,22 +26,7 @@
 
   <tbody>
     <% tasks.each do |task| %>
-      <tr>
-        <td><%= link_to task.summary, task %></td>
-        <td><%= task.status %></td>
-        <td><%= task.task_type %></td>
-        <td><%= task.user.full_name if task.user %></td>
-        <td><%= task.feature.summary if task.feature %></td>
-        <td><%= task.planned_hours %></td>
-        <td><%= task.actual_hours %></td>
-        <td><%= task.remaining_hours %></td>
-        <td class="center">
-        	<% if can?(:manage, task) %>
-        	<%= link_to 'Edit', edit_task_path(task), :class=>"btn btn-mini btn-primary" %>
-        	<%= link_to 'Delete', task, method: :delete, data: { confirm: 'Are you sure?' } , :class=>"btn btn-mini btn-danger"%>
-        	<% end %>
-        </td>
-      </tr>
+      <%= render partial:"row", locals:{task:task}%>
     <% end %>
   </tbody>
 </table>

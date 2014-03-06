@@ -1,5 +1,7 @@
 class TasksController < InheritedResources::Base
 
+  respond_to :html, :js
+  
   before_filter :authenticate_user!, :except=>[]
   load_and_authorize_resource :except=>[]
 
@@ -13,6 +15,7 @@ class TasksController < InheritedResources::Base
       @tasks = @project.tasks
     end
   end
+  
       
   ALLOWED_FIELDS =
   [ :summary, :details, :notes, :status, :task_type, :assigned_to, 
