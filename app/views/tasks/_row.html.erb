@@ -10,6 +10,6 @@
 	<td class="center"> <% if can?(:manage, task) %>
 	<%= link_to 'Done', task_path(task, "task[status]"=>"Done"), :method=>:patch, :remote=>true, :class=>"btn btn-mini btn-success" if task.status != "Done" %>
 	<%= link_to 'Edit', edit_task_path(task), :class=>"btn btn-mini btn-primary" %>
-	<%= link_to 'Delete', task, method: :delete, data: { confirm: 'Are you sure?' } , :class=>"btn btn-mini btn-danger"%>
+	<%= link_to 'Delete', task, method: :delete, data: { confirm: 'Are you sure?' } , :remote=>true, :class=>"btn btn-mini btn-danger"%>
 	<% end %> </td>
 </tr>

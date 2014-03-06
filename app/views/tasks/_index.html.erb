@@ -9,6 +9,11 @@
 	</span>
 </legend>
 
+<div>
+<% @task = Task.new(project_id: project.id, feature_id: feature_id) %>
+<%= render partial: "/tasks/form_inline" %>
+</div>
+
 <table class="table row-click table-bordered">
   <thead>
     <tr>
@@ -24,7 +29,7 @@
     </tr>
   </thead>
 
-  <tbody>
+  <tbody id="tasks_table_body">
     <% tasks.each do |task| %>
       <%= render partial:"row", locals:{task:task}%>
     <% end %>
