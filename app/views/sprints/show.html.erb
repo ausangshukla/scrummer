@@ -11,15 +11,22 @@
 			<td><%= @sprint.rag_status %></td>
 			<td>Project:</td>
 			<td><%= link_to @sprint.project.name, @sprint.project  %></td>
+			
 			<td>Start date:</td>
 			<td><%= @sprint.start_date %></td>
 			<td>End date:</td>
 			<td><%= @sprint.end_date %></td>
+			
+			  <td>Planned Hours:</td>
+			  <td><%= @sprint.planned_hours %></td>
+			  <td>Actual Hours:</td>
+			  <td><%= @sprint.actual_hours %></td>
+			
 		</tr>
 
 		<tr>
 			<td>Notes:</td>
-			<td colspan="9"><%= @sprint.notes %></td>
+			<td colspan="14"><%= @sprint.notes %></td>
 		</tr>
 
 	</table>

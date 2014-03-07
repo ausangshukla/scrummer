@@ -16,13 +16,18 @@ class Task < ActiveRecord::Base
     self.status         ||= STATUSES[0]
     self.task_type      ||= TYPES[0]
     self.planned_hours  ||= 4
+    self.actual_hours   ||= 0
   end
   
-  # before_save :compute_hours
+  after_save     :compute_hours
+  before_destroy :compute_hours
+
   def compute_hours
-    if(self.planned_hours > 0 && self.actual_hours > 0)
-      self.remaining_hours = self.planned_hours - self.actual_hours
-    end  
+    self.feature.planned_hours = self.feature.tasks.sum(:planned_hours)
+    self.feature.actual_hours  = self.feature.tasks.sum(:actual_hours)
+    self.feature.save
   end
+  
+  
   
 end

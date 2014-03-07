@@ -12,7 +12,8 @@
       <th>Iteration</th>
       <th>Start date</th>
       <th>End date</th>
-      <th>Notes</th>
+      <th>Planned hours</th>
+      <th>Actual hours</th>      
       <th>Rag status</th>
       <th class="action_col"></th>
     </tr>
@@ -24,7 +25,8 @@
         <td><%= link_to sprint.iteration, sprint %></td>
         <td><%= sprint.start_date %></td>
         <td><%= sprint.end_date %></td>
-        <td><%= sprint.notes %></td>
+        <td><%= sprint.planned_hours %></td>
+		<td><%= sprint.actual_hours %></td>	
         <td><%= sprint.rag_status %></td>
         <td class="center">
         	<% if can?(:manage, sprint) %>

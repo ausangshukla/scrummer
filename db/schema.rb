@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140306045103) do
+ActiveRecord::Schema.define(version: 20140307080653) do
 
   create_table "delayed_jobs", force: true do |t|
     t.integer  "priority",   default: 1, null: false
@@ -53,6 +53,8 @@ ActiveRecord::Schema.define(version: 20140306045103) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "sprint_id"
+    t.float    "planned_hours"
+    t.float    "actual_hours"
   end
 
   add_index "features", ["assigned_to"], name: "index_features_on_assigned_to", using: :btree
@@ -88,6 +90,8 @@ ActiveRecord::Schema.define(version: 20140306045103) do
     t.integer  "project_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.float    "planned_hours"
+    t.float    "actual_hours"
   end
 
   add_index "sprints", ["project_id"], name: "index_sprints_on_project_id", using: :btree
@@ -96,8 +100,8 @@ ActiveRecord::Schema.define(version: 20140306045103) do
     t.string   "summary"
     t.text     "details"
     t.text     "notes"
-    t.string   "status",          limit: 10
-    t.string   "task_type",       limit: 10
+    t.string   "status",          limit: 20
+    t.string   "task_type",       limit: 20
     t.integer  "assigned_to"
     t.integer  "project_id"
     t.integer  "feature_id"

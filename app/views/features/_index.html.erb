@@ -18,6 +18,8 @@
       <th>Status</th>
       <th>Priority</th>
       <th>Points</th>
+      <th>Planned hours</th>
+      <th>Actual hours</th>      
       <th>Classification</th>
       <th>Assigned to</th>
       <th class="action_col"></th>
@@ -32,6 +34,9 @@
         <td><%= feature.status %></td>
         <td><%= feature.priority %></td>
         <td><%= feature.points %></td>
+        <td><%= feature.planned_hours %></td>
+		<td><%= feature.actual_hours %></td>
+	
         <td><%= feature.classification %></td>
         <td><%= feature.user.full_name if feature.user %></td>
         <td class="center">

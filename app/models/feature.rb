@@ -17,7 +17,17 @@ class Feature < ActiveRecord::Base
     self.priority       ||= PRIORITIES[0]
     self.status         ||= STATUSES[0]
     self.classification ||= CLASSIFICATIONS[0]
-     
+    self.planned_hours  ||= 0
+    self.actual_hours   ||= 0
   end
+  
+ after_save     :compute_hours
+ before_destroy :compute_hours
+
+ def compute_hours
+   self.sprint.planned_hours = self.sprint.features.sum(:planned_hours)
+   self.sprint.actual_hours  = self.sprint.features.sum(:actual_hours)
+   self.sprint.save
+ end
   
 end

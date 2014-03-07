@@ -12,6 +12,7 @@ namespace :scrummer do
   task :emptyDB => :environment do
   	User.delete_all
   	Project.delete_all
+  	ProjectUserMapping.delete_all
   	Feature.delete_all
   	Sprint.delete_all
   	Task.delete_all
@@ -138,7 +139,7 @@ namespace :scrummer do
   end        
   
   desc "Generating all Fake Data"
-  task :generateFakeAll => [:emptyDB, :generateFakeUsers, :generateFakeAdmin, :generateFakeProjects, :generateFakeSprints, :generateFakeFeatures ] do
+  task :generateFakeAll => [:emptyDB, :generateFakeUsers, :generateFakeAdmin, :generateFakeProjects, :generateFakeSprints, :generateFakeFeatures, :generateFakeTasks ] do
     puts "Generating all Fake Data"
   end
   
