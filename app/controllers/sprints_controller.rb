@@ -12,9 +12,15 @@ class SprintsController < InheritedResources::Base
     
   def new
     prev_sprint = Sprint.where(project_id:@sprint.project_id).order("iteration asc").last
-    @sprint.iteration = prev_sprint.iteration + 1
-    @sprint.start_date = prev_sprint.end_date + 1.day
-    @sprint.end_date = @sprint.start_date + (prev_sprint.end_date - prev_sprint.start_date).days  
+    if prev_sprint    
+      @sprint.iteration = prev_sprint.iteration + 1
+      @sprint.start_date = prev_sprint.end_date + 1.day
+      @sprint.end_date = @sprint.start_date + (prev_sprint.end_date - prev_sprint.start_date).days
+    else
+      @sprint.iteration = 1
+      @sprint.start_date = Date.today
+      @sprint.end_date = @sprint.start_date + 30.days
+    end  
   end
   
   ALLOWED_FIELDS =

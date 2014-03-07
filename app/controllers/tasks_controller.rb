@@ -14,6 +14,12 @@ class TasksController < InheritedResources::Base
       @project = Project.find(params[:project_id])
       @tasks = @project.tasks
     end
+    
+    if(params[:tasks_for].blank? || params[:tasks_for] == "My")
+      @tasks = @tasks.where(assigned_to: current_user.id)
+    end
+    
+    @tasks = @tasks.includes(:user, :feature).order("users.last_name, tasks.id desc")
   end
   
       

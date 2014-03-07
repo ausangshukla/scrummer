@@ -1,0 +1,35 @@
+<legend>
+	Users
+	<span class="pull-right">		
+		<%= link_to "New User", new_user_path(), :class=>"btn btn-primary"  if can?(:create, User) %>		
+	</span>
+</legend>
+
+<table class="table row-click table-bordered">
+  <thead>
+    <tr>
+      <th>First name</th>
+      <th>Last name</th>
+      <th>Email</th>
+      <th>Role</th>
+      <th class="action_col"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% users.each do |user| %>
+      <tr>
+        <td><%= link_to user.first_name, user %></td>
+        <td><%= user.last_name %></td>
+        <td><%= user.email %></td>
+        <td><%= user.role %></td>
+        <td class="center">
+			<% if can?(:manage, user) %>
+        	<%= link_to 'Edit', edit_user_path(user), :class=>"btn btn-mini btn-primary" %>
+        	<%= link_to 'Delete', user, method: :delete, data: { confirm: 'Are you sure?' } , :class=>"btn btn-mini btn-danger"%>
+        	<% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

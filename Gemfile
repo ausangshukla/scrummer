@@ -4,7 +4,7 @@ gem 'honeybadger'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.1'
-gem "devise", '3.1.1'
+gem "devise"
 gem "cancan"
 gem "high_voltage"
 gem 'thin'
@@ -27,7 +27,7 @@ gem "cocoon"
 gem 'logstasher'
 
 
-gem 'friendly_id', '5.0.0.rc2'
+gem 'friendly_id'
 
 gem 'thinking-sphinx'
 gem 'riddle'
@@ -58,8 +58,8 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 
-gem "twitter-bootstrap-rails", '2.2.6'
-gem "less-rails", "2.3.3"
+gem "twitter-bootstrap-rails"
+gem "less-rails"
 # For pagination
 gem "will_paginate"
 gem "bootstrap-will_paginate"
@@ -69,7 +69,7 @@ gem 'exception_logger', :git => 'git://github.com/ryancheung/exception_logger.gi
 gem 'exception_notification'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 1.2'
+gem 'jbuilder'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
@@ -85,26 +85,24 @@ gem "therubyracer"
 gem "simple_form"
 
 
-
+gem 'factory_girl_rails'
 group :test do
   gem 'capybara'
   gem 'rspec-rails'
-    gem 'database_cleaner'
-    gem 'factory_girl_rails'
-    gem 'cucumber-rails', :require=>false
-    gem 'launchy'
-    gem 'email_spec'
-    gem 'selenium-webdriver'
-    gem 'pony'
-    gem 'bullet'
-    gem 'vcr'
-    gem 'webmock'
+  gem 'database_cleaner'  
+  gem 'cucumber-rails', :require=>false
+  gem 'launchy'
+  gem 'email_spec'
+  gem 'selenium-webdriver'
+  gem 'pony'
+  gem 'bullet'
+  gem 'vcr'
+  gem 'webmock'
 end
 
 gem 'faker'
 
 gem 'delayed_job_active_record'
-gem 'money-rails'
 gem 'date_validator'
 gem 'quiet_assets'
 gem 'rvm-capistrano'

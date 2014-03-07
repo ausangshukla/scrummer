@@ -3,15 +3,15 @@
 		<ul id="projectTab" class="nav pull-right" >
 			
 			<li class="<%= active_tab_class(params, 'features_view', true) %>">
-				<a id="features_view_tab" href="#features_view"  ajaxurl="/features?project_id=<%=@project.id%>container=credits&layout=none" data-toggle="tab">Features</a>
+				<a id="features_view_tab" href="#features_view"  ajaxurl="/features?project_id=<%=@project.id%>&layout=none" data-toggle="tab">Features</a>
 			</li>
 
 			<li class="<%= active_tab_class(params, 'tasks_view') %>" >
-				<a id="tasks_view_tab" href="#tasks_view" ajaxurl="/tasks?project_id=<%=@project.id%>container=credits&layout=none" data-toggle="tab">Tasks</a>
+				<a id="tasks_view_tab" href="#tasks_view" ajaxurl="/tasks?project_id=<%=@project.id%>&layout=none&tasks_for=My" data-toggle="tab">Tasks</a>
 			</li>
 			
 			<li class="<%= active_tab_class(params, 'sprints_view') %>">
-				<a id="sprints_view_tab" href="#sprints_view"  ajaxurl="/sprints?project_id=<%=@project.id%>container=credits&layout=none" data-toggle="tab">Sprints</a>
+				<a id="sprints_view_tab" href="#sprints_view"  ajaxurl="/sprints?project_id=<%=@project.id%>&layout=none" data-toggle="tab">Sprints</a>
 			</li>
 
 		</ul>
@@ -25,7 +25,9 @@
 	</div>
 
 	<div class="tab-pane fade in <%= active_tab_class(params, 'features_view', true) %>" id="features_view">
-		<%= render partial: "/features/index", locals: {features: @project.features, project: @project} %>
+		<%= render partial: "/features/index", 
+			locals: {features: @project.features.includes(:project, :sprint).order("sprints.iteration asc, features.priority asc"), 
+				project: @project} %>
 	</div>
 
 	<div class="tab-pane in fade <%= active_tab_class(params, 'tasks_view') %>" id="tasks_view">

@@ -1,6 +1,15 @@
 var app = {
 
 	"app_type" : "web",
+	filterTable : function() {
+		$('input.filter').bind('keyup', function() {
+			var rex = new RegExp($(this).val(), 'i');
+			$('.searchable tr').hide();
+			$('.searchable tr').filter(function() {
+				return rex.test($(this).text());
+			}).show();
+		});
+	},
 
 	initUserTypeAhead : function(field_name, callback) {
 		app.debug('initUserTypeAhead called ');
@@ -75,24 +84,29 @@ var app = {
 		}
 	},
 
-	loadAjaxTab : function(e) {
+	loadAjaxTab : function(e, url, target) {
 
 		baseURL = '';
-		ajaxUrl = $(e.target).attr("ajaxurl");
+		if (url) {
+			ajaxUrl = url;
+			targetID = target;	
+		} else {
+			ajaxUrl = $(e.target).attr("ajaxurl");
+			// find the tabs target div
+			pattern = /#.+/gi//use regex to get anchor(==selector)
+			targetID = e.target.toString().match(pattern)[0];			
+		}
 		//window.history.pushState('','',ajaxUrl);
 		//get anchor
 		app.debug("Clicked borrowerTab with " + ajaxUrl);
 		if (ajaxUrl && ajaxUrl.length > 0) {
-			// find the tabs target div
-			pattern = /#.+/gi//use regex to get anchor(==selector)
-			targetID = e.target.toString().match(pattern)[0];
-			//get anchor
-
+			
 			//load content for selected tab
 			$.blockUI();
 			$(targetID).load(baseURL + ajaxUrl, function(responseText, status, req) {
 				if (status !== "error") {
-					app.debug("load triggered");
+					app.debug("load triggered for " + targetID);
+					//app.debug(responseText);
 					//$(tab_id).tab();
 				} else {
 					if (responseText) {
@@ -103,7 +117,6 @@ var app = {
 				app.init($(targetID));
 			});
 		}
-		
 
 	},
 	ajaxTabs : function(tab_id) {
@@ -334,6 +347,4 @@ jQuery(function() {
 	});
 	$(document).ajaxStop($.unblockUI);
 
-	
-	
 });

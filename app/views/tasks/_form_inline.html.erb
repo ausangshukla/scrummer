@@ -1,19 +1,19 @@
-<div class="alert alert-success" style="width:80%;margin: 1px auto;">
+<div class="alert alert-success" style="width:80%;margin: 0px auto; padding-bottom: 0px; margin-bottom: 10px;" >
 <%= simple_form_for(@task, :html=>{:class=>"form_inline", :style=>"margin: 1px auto;"}, :remote=>true) do |f| %>
   <%= f.error_notification %>
 
   <fieldset>
-    <%= f.input_field :summary, :placeholder=>"Summary"  %>    
-    <%= f.input_field :status, :collection=>Task::STATUSES, :title=>"Status"%>
-    <%= f.input_field :task_type, :collection=>Task::TYPES , :title=>"Type"%>
+    <%= f.input_field :summary, :placeholder=>"Enter task summary"  %>    
+    <%= f.input_field :status, :collection=>Task::STATUSES, :title=>"Status", :class=>"input-small" %>
+    <%= f.input_field :task_type, :collection=>Task::TYPES , :title=>"Type", :class=>"input-small"%>
     <%= f.input_field :assigned_to, :collection=>@task.project.users.collect{|u| [u.full_name, u.id]} , :title=>"Assigned To"%>
     <%= f.input_field :project_id, :as=>:hidden %>
     <%= f.input_field :feature_id, :collection=>@task.project.features.collect{|u| [u.summary, u.id]}, :title=>"Feature" %>
     
-    <%= f.input_field :planned_hours , :class=>"input-small", :title=>"Planned Hours" %>    
-    <%= f.input_field :actual_hours , :class=>"input-small", :title=>"Actual Hours" %>
-    <%= f.input_field :details , :as=>:string, :placeholder=>"Details", :class=>"input-xxlarge", :title=>"Details" %>
-    <%= f.submit "Save", :class=>"btn btn-primary", :style=>"margin-top: -10px;" %>
+    <%= f.input_field :planned_hours , :class=>"input-small", :title=>"Planned Hours", :class=>"input-mini" %>    
+    <%= f.input_field :actual_hours , :class=>"input-small", :title=>"Actual Hours", :class=>"input-mini" %>    
+    <%= f.input_field :details , :as=>:string, :placeholder=>"Enter task details here", :class=>"", :style=>"width:70%;", :title=>"Details" %>
+    <%= f.submit "Save Task", :class=>"btn btn-primary", :style=>"margin-top: -10px;" %>
   </fieldset>
 <% end %>
 </div>

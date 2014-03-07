@@ -2,7 +2,7 @@
 	<legend>
 		<%= @project.name %> : <%= @project.status %>
 		<span class="pull-right">
-			<%= link_to "Manage Team", new_project_user_mapping_path("project_user_mapping[project_id]"=>@project.id), :class=>"btn btn-primary"  if can?(:manage, @project) %>
+			<%= link_to "Manage Team", project_user_mappings_path(:project_id=>@project.id), :class=>"btn btn-primary"  if can?(:manage, @project) %>
 		</span>
 	</legend>
 	

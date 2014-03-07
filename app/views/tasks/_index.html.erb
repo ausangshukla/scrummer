@@ -1,17 +1,30 @@
 <legend>
 	Tasks
+	
 	<span class="pull-right">
+		
 		<%
 			feature ||= nil 
 			feature_id = feature ? feature.id : nil 
 		%>
-		<%= link_to "New Task", new_task_path("task[project_id]"=> project.id, "task[feature_id]"=> feature_id), :class=>"btn btn-primary"  if project && can?(:create, Task) %>
+		<%= link_to "New Task", new_task_path("task[project_id]"=> project.id, "task[feature_id]"=> feature_id), 
+			:style=>"margin-top: -8px;", :class=>"btn btn-primary"  if project && can?(:create, Task) %>
+		
+		<input type="text" class="filter" placeholder="Filter"  title="Type to filter tasks"/>
+		
+		<%= simple_form_for(Task.new, :html=>{:style=>"display:inline;"}) do |f| %>
+			<%= f.input_field :tasks_for, 
+				:collection=>[["My Tasks","My"],["All Tasks", "All"]], 
+				:id=>"tasks_for", :name=>"tasks_for", 
+				:class=>"input-small", :selected=>params[:tasks_for] %>
+		<% end %>
+		
 	</span>
 </legend>
 
 <div>
-<% @task = Task.new(project_id: project.id, feature_id: feature_id) %>
-<%= render partial: "/tasks/form_inline" %>
+	<% @task = Task.new(project_id: project.id, feature_id: feature_id, assigned_to: current_user.id) %>
+	<%= render partial: "/tasks/form_inline" %>
 </div>
 
 <table class="table row-click table-bordered">
@@ -29,9 +42,21 @@
     </tr>
   </thead>
 
-  <tbody id="tasks_table_body">
+  <tbody id="tasks_table_body" class="searchable">
     <% tasks.each do |task| %>
-      <%= render partial:"row", locals:{task:task}%>
+      <%= render partial:"/tasks/row", locals:{task:task}%>
     <% end %>
   </tbody>
 </table>
+
+<script>
+	app.filterTable();
+	$("#tasks_for").change(function(){
+		url = $("#tasks_view_tab").attr("ajaxUrl") + "&tasks_for=" + $("#tasks_for").val();
+		target = $("#tasks_view_tab").attr("href");
+		app.loadAjaxTab("#tasks_view_tab", url, target);
+	});
+	
+	
+	
+</script>

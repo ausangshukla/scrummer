@@ -8,6 +8,8 @@ class FeaturesController < InheritedResources::Base
       @project = Project.find(params[:project_id])
       @features = @project.features
     end
+    
+    @features = @features.includes(:project, :sprint).order("sprints.iteration asc, features.priority asc")
   end
 
   ALLOWED_FIELDS =
