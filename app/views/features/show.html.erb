@@ -1,5 +1,7 @@
+
 <div class="">
-	
+
+	<legend>Feature</legend>	
 	<table class="table table-striped table-bordered">
 		
 			
@@ -53,4 +55,6 @@
 	</table>
 </div>
 
-<%= render partial: "/tasks/index", locals: {tasks:@feature.tasks, project: @feature.project, feature:@feature} %>
+<div id="tasks_view">
+	<%= render partial: "/tasks/index", locals: {tasks:current_user.tasks.where(feature_id:@feature.id), project: @feature.project, feature:@feature} %>
+</div>

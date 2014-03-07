@@ -23,7 +23,7 @@
         <td><%= link_to project.name, project %></td>
         <td><%= project.start_date %></td>
         <td><%= project.end_date %></td>
-        <td><%= project.status %></td>
+        <td class="status_<%= project.status.downcase %>"><%= project.status %></td>
         <td class="center">
         	<% if can?(:manage, project) %>
         	<%= link_to 'Edit', edit_project_path(project), :class=>"btn btn-mini btn-primary" %>

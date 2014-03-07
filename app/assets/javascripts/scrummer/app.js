@@ -98,7 +98,7 @@ var app = {
 		}
 		//window.history.pushState('','',ajaxUrl);
 		//get anchor
-		app.debug("Clicked borrowerTab with " + ajaxUrl);
+		app.debug("Clicked borrowerTab with " + ajaxUrl + " target = " + targetID);
 		if (ajaxUrl && ajaxUrl.length > 0) {
 			
 			//load content for selected tab

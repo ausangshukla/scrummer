@@ -5,17 +5,17 @@
 		
 		<%
 			feature ||= nil 
-			feature_id = feature ? feature.id : nil 
+			feature_id = feature ? feature.id : params[:feature_id] 
 		%>
 		<%= link_to "New Task", new_task_path("task[project_id]"=> project.id, "task[feature_id]"=> feature_id), 
 			:style=>"margin-top: -8px;", :class=>"btn btn-primary"  if project && can?(:create, Task) %>
 		
 		<input type="text" class="filter" placeholder="Filter"  title="Type to filter tasks"/>
 		
-		<%= simple_form_for(Task.new, :html=>{:style=>"display:inline;"}) do |f| %>
+		<%= simple_form_for(Task.new, :action=>"/tasks", :html=>{:style=>"display:inline;"}) do |f| %>
 			<%= f.input_field :tasks_for, 
 				:collection=>[["My Tasks","My"],["All Tasks", "All"]], 
-				:id=>"tasks_for", :name=>"tasks_for", 
+				:id=>"tasks_for", :name=>"tasks_for", :title=>"Show My/All Tasks", 
 				:class=>"input-small", :selected=>params[:tasks_for] %>
 		<% end %>
 		
@@ -37,7 +37,6 @@
       <th>Feature</th>
       <th>Planned hours</th>
       <th>Actual hours</th>
-      <th>Remaining hours</th>
       <th class="action_col"></th>
     </tr>
   </thead>
@@ -52,11 +51,9 @@
 <script>
 	app.filterTable();
 	$("#tasks_for").change(function(){
-		url = $("#tasks_view_tab").attr("ajaxUrl") + "&tasks_for=" + $("#tasks_for").val();
+		url = "/tasks?project_id=<%=project.id%>&feature_id=<%=feature_id%>&layout=none" + "&tasks_for=" + $("#tasks_for").val();
 		target = $("#tasks_view_tab").attr("href");
-		app.loadAjaxTab("#tasks_view_tab", url, target);
+		app.loadAjaxTab("#tasks_view_tab", url, "#tasks_view");
 	});
-	
-	
 	
 </script>

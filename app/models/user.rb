@@ -17,6 +17,8 @@ class User < ActiveRecord::Base
   
   after_save ThinkingSphinx::RealTime.callback_for(:user)
 
+  has_many :features, :foreign_key=>:assigned_to
+  has_many :tasks, :foreign_key=>:assigned_to
     
   def super_user?
     role == "Super User"

@@ -15,7 +15,12 @@ class TasksController < InheritedResources::Base
       @tasks = @project.tasks
     end
     
-    if(params[:tasks_for].blank? || params[:tasks_for] == "My")
+    if(params[:feature_id].present?)
+        @tasks = @tasks.where(feature_id: params[:feature_id])
+      end
+    
+    params[:tasks_for] = "My" if params[:tasks_for].blank? 
+    if(params[:tasks_for] == "My")
       @tasks = @tasks.where(assigned_to: current_user.id)
     end
     

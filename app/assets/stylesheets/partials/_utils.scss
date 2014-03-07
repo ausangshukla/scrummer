@@ -53,11 +53,21 @@ th .desc {
 
 table {
   .action_col {
-    width: 200px;
+    //width: 200px;
   }
   
   .desc_col {
     width:40%;
+  }
+  
+  .status_green {
+    background: lighten($green20, 10%);
+  }
+  .status_red {
+    background: lighten($redColor, 10%);
+  }
+  .status_amber {
+    background: lighten($orangeColor, 10%);
   }
 }
 

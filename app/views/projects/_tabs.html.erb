@@ -7,7 +7,7 @@
 			</li>
 
 			<li class="<%= active_tab_class(params, 'tasks_view') %>" >
-				<a id="tasks_view_tab" href="#tasks_view" ajaxurl="/tasks?project_id=<%=@project.id%>&layout=none&tasks_for=My" data-toggle="tab">Tasks</a>
+				<a id="tasks_view_tab" href="#tasks_view" ajaxurl="/tasks?project_id=<%=@project.id%>&layout=none" data-toggle="tab">Tasks</a>
 			</li>
 			
 			<li class="<%= active_tab_class(params, 'sprints_view') %>">
