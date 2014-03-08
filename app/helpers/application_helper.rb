@@ -139,5 +139,9 @@ module ApplicationHelper
   def risk_class(client)
     client.risk_level.downcase.gsub(" / ", "_").gsub(" ", "_")
   end
+  
+  def underscore(input)
+    input.downcase.gsub(" ", "_")
+  end
 end
 
