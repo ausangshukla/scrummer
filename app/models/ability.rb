@@ -34,6 +34,7 @@ class Ability
   def user_privilages
     guest_privilages
     can [:manage], User, :id => @user.id    
+    can [:show], Project
   end
 
   def team_member_privilages
@@ -44,7 +45,8 @@ class Ability
     can [:manage], Feature, :assigned_to => @user.id
     can [:read], Task
     can [:manage], Task, :assigned_to => @user.id
-    can [:read], ProjectUserMapping, :project_user_mappings=> {:user_id=>@user.id}
+    can [:read], ProjectUserMapping
+    can [:read], User
   end
   
   def manager_privilages    

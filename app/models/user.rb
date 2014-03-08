@@ -22,7 +22,11 @@ class User < ActiveRecord::Base
   has_many :features, :foreign_key=>:assigned_to
   has_many :tasks, :foreign_key=>:assigned_to
   
-  scope :manager, -> {
+  has_many :project_user_mappings, :dependent=>:delete_all
+  has_many :projects, :through=>:project_user_mappings
+    
+  
+  scope :managers, -> {
     where(role:  MANAGERS)
   }
   

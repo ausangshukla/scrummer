@@ -5,11 +5,11 @@
 	<td><%= task.task_type %></td>
 	
 	<td><%= task.feature.summary if task.feature %></td>
+	<td><%= link_to task.user.full_name, task.user if task.user %></td>
 	
 	<% unless mini %>
 	<td><%= task.planned_hours %></td>
-	<td><%= task.actual_hours %></td>	
-	<td><%= task.user.full_name if task.user %></td>
+	<td><%= task.actual_hours %></td>		
 	<td><%= display_date_time task.updated_at %></td>
 	<td class="center"> 
 		<% if can?(:manage, task) %>

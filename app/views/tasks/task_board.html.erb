@@ -11,6 +11,10 @@
 		@project = Project.find(params[:project_id])
 		tasks = @project.tasks
 		project = @project
+		if params[:user_id].present?
+			@user = User.find(params[:user_id])
+			tasks = tasks.where(assigned_to: params[:user_id])
+		end
 	end
 %>
 <legend>
@@ -19,6 +23,7 @@
 	<%=  link_to "Project: #{@project.name}", @project if @project %>
 	<%=  link_to "Sprint: #{@sprint.id}", @sprint if @sprint %>
 	<%=  link_to "Feature: #{@feature.summary}", @feature if @feature %>
+	<%=  link_to " | User: #{@user.full_name}", @user if @user %>
 	|
 	<input type="text" class="filter" placeholder="Filter"  title="Type to filter tasks" style="margin-top: 8px;"/>
 	<span class="pull-right">		

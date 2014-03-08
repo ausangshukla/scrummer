@@ -1,6 +1,7 @@
 <legend>Add Team Member</legend>
+
 <% @project_user_mapping = ProjectUserMapping.new(project_id:@project.id) %>
-<%= render 'form' %>
+<%= render 'form' if can?(:manage, @project) %>
 
 
 <legend>Project Team for <%= @project.name %></legend>

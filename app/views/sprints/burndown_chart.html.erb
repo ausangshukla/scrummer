@@ -1,0 +1,5 @@
+<%= render partial: "/sprints/burndown_chart", 
+			locals: { 	title: @sprint.project.name, 
+						sub_title: "Sprint: #{@sprint.iteration}" ,
+						days: @sprint.days,
+						remaining_days: @sprint.remaining_days.values  } %>
