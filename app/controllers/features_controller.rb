@@ -4,7 +4,11 @@ class FeaturesController < InheritedResources::Base
     
     
   def index
-    if(params[:project_id].present?)
+    if(params[:sprint_id].present?)
+      @sprint = Sprint.find(params[:sprint_id])
+      @features = @sprint.features
+      @project = @sprint.project
+    elsif(params[:project_id].present?)
       @project = Project.find(params[:project_id])
       @features = @project.features
     end

@@ -5,7 +5,7 @@
 			sprint ||= nil 
 			sprint_id = sprint ? sprint.id : nil 
 		%>
-		<%= link_to "New Feature", new_feature_path("feature[project_id]"=> project.id, "feature[sprint_id]"=> sprint_id), :class=>"btn btn-primary"  if project && can?(:create, Sprint) %>
+		<%= link_to "New Feature", new_feature_path("feature[project_id]"=> project.id, "feature[sprint_id]"=> sprint_id), :class=>"btn btn-primary"  if project && can?(:manage, project) %>
 	</span>
 
 </legend>
