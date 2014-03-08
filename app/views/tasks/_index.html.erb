@@ -10,7 +10,9 @@ unless mini
 			
 			<%			
 				feature ||= nil 
-				feature_id = feature ? feature.id : params[:feature_id] 
+				feature_id = feature ? feature.id : params[:feature_id]
+				sprint ||= nil 
+				sprint_id = sprint ? sprint.id : params[:sprint_id]  
 			%>
 		
 		 
@@ -27,14 +29,23 @@ unless mini
 					:collection=>[""].concat(Task::STATUSES), 
 					:id=>"status", :name=>"status", :title=>"Filter by Status", 
 					:class=>"input-medium", :selected=>params[:status] %>
-				
-				
-				<%= link_to "New Task", new_task_path("task[project_id]"=> project.id, "task[feature_id]"=> feature_id), 
-					:style=>"margin-top: -8px;", :class=>"btn btn-primary"  if project && can?(:create, Task) %>
-					
+									
 			<% end %>
-		
-		
+			
+			<%= link_to "New Task", new_task_path("task[project_id]"=> project.id, "task[feature_id]"=> feature_id), 
+					:style=>"margin-top: -8px;", :class=>"btn btn-primary"  if project && can?(:create, Task) %>
+			
+			<% if feature_id %>		
+				<%= link_to "Task Board", task_board_tasks_path(:feature_id=> feature_id), 
+					:style=>"margin-top: -8px;", :class=>"btn btn-primary" %>
+			<% elsif sprint_id %>
+				<%= link_to "Task Board", task_board_tasks_path(:sprint_id=> sprint_id), 
+					:style=>"margin-top: -8px;", :class=>"btn btn-primary" %>
+			<% elsif project %>
+				<%= link_to "Task Board", task_board_tasks_path(:project_id=> project.id), 
+					:style=>"margin-top: -8px;", :class=>"btn btn-primary" %>
+			<% end %>	
+				
 		</span>
 	</legend>
 	
@@ -47,7 +58,7 @@ unless mini
 </div>
 <% end %>
 
-<table class="table row-click table-bordered table-condensed">
+<table id="tasks_table" class="table row-click table-bordered table-condensed">
   <thead>
     <tr>
       <th>Summary</th>
@@ -75,7 +86,7 @@ unless mini
 	app.filterTable();
 	
 	function loadTasks() {
-		url = "/tasks?project_id=<%=project.id%>&feature_id=<%=feature_id%>&layout=none" + 
+		url = "/tasks?project_id=<%=project.id%>&feature_id=<%=feature_id%>&sprint_id=<%=sprint_id%>&layout=none" + 
 			  "&tasks_for=" + encodeURIComponent($("#tasks_for").val()) +
 			  "&status=" + encodeURIComponent($("#status").val());
 			  

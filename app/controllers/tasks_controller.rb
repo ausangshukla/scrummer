@@ -14,18 +14,20 @@ class TasksController < InheritedResources::Base
   end
     
   def index
-    if(params[:project_id].present?)
-      @project = Project.find(params[:project_id])
-      @tasks = @project.tasks
+    
+    if(params[:feature_id].present?)
+      @feature = Feature.find(params[:feature_id])
+      @project = @feature.project
+      @tasks = @feature.tasks
     elsif(params[:sprint_id].present?)
       @sprint = Sprint.find(params[:sprint_id])
       @project = @sprint.project  
-      @tasks = @sprint.tasks          
+      @tasks = @sprint.tasks
+    elsif(params[:project_id].present?)
+      @project = Project.find(params[:project_id])
+      @tasks = @project.tasks             
     end
     
-    if(params[:feature_id].present?)
-        @tasks = @tasks.where(feature_id: params[:feature_id])
-      end
     
     params[:tasks_for] = "My" if params[:tasks_for].blank? 
     if(params[:tasks_for] == "My")
