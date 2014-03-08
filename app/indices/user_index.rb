@@ -1,8 +1,8 @@
 ThinkingSphinx::Index.define :user, :with => :real_time do
   
   # fields
-  indexes transliterate_first_name, :as=>:first_name
-  indexes transliterate_last_name, :as=>:last_name
+  indexes :first_name
+  indexes :last_name
   indexes email
   indexes role
 

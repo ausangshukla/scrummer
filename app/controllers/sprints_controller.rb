@@ -8,6 +8,7 @@ class SprintsController < InheritedResources::Base
       @project = Project.find(params[:project_id])
       @sprints = @project.sprints
     end
+    @sprints = @sprints.includes(:project=>[:project_user_mappings])
   end
     
   def new

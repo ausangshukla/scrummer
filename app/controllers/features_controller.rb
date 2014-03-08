@@ -9,7 +9,7 @@ class FeaturesController < InheritedResources::Base
       @features = @project.features
     end
     
-    @features = @features.includes(:project, :sprint).order("sprints.iteration asc, features.priority asc")
+    @features = @features.includes(:sprint, :user, :project=>[:project_user_mappings]).order("sprints.iteration asc, features.priority asc")
   end
 
   ALLOWED_FIELDS =

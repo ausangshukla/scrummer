@@ -15,10 +15,10 @@ class Ability
 
     when "Super User"
       can :manage, :all
-    when "Team Member"
+    when *User::MEMBERS
       team_member_privilages
-    when "Scrum Master"
-      scrum_master_privilages
+    when *User::MANAGERS
+      manager_privilages
     when "Read Only"
       read_only_privilages
     else
@@ -28,8 +28,7 @@ class Ability
   end
 
   def guest_privilages
-    # Anyone can read or register a Company
-    can [:read], Project
+    
   end
 
   def user_privilages
@@ -39,19 +38,27 @@ class Ability
 
   def team_member_privilages
     user_privilages
-    can [:manage], Project
-    can [:manage], Sprint
-    can [:manage], Feature
-    can [:manage], Task
-    can [:manage], ProjectUserMapping
+    can [:read], Project, :project_user_mappings=> {:user_id=>@user.id}
+    can [:read], Sprint
+    can [:read], Feature  
+    can [:manage], Feature, :assigned_to => @user.id
+    can [:read], Task
+    can [:manage], Task, :assigned_to => @user.id
+    can [:read], ProjectUserMapping, :project_user_mappings=> {:user_id=>@user.id}
   end
   
-  def scrum_master_privilages    
+  def manager_privilages    
     team_member_privilages
+    can [:manage], Project, :project_user_mappings=> {:user_id=>@user.id, :role=>User::MANAGERS}
+    can [:manage], Sprint, :project =>{ :project_user_mappings=> {:user_id=>@user.id, :role=>User::MANAGERS} }
+    can [:manage], Feature, :project =>{ :project_user_mappings=> {:user_id=>@user.id, :role=>User::MANAGERS} }
+    can [:manage], Task, :project =>{ :project_user_mappings=> {:user_id=>@user.id, :role=>User::MANAGERS} }
+    can [:manage], ProjectUserMapping, :project =>{ :project_user_mappings=> {:user_id=>@user.id, :role=>User::MANAGERS} }
   end
     
   def read_only_privilages    
-    emp_privilages
+    can [:read], :all
+    cannot [:manage], :all
   end
   
 

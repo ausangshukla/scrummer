@@ -37,7 +37,7 @@ class TasksController < InheritedResources::Base
       @tasks = @tasks.where(status: params[:status])
     end
     
-    @tasks = @tasks.includes(:user, :feature).order("users.last_name, tasks.id desc")
+    @tasks = @tasks.includes(:user, :feature, :project=>[:project_user_mappings]).order("users.last_name, tasks.id desc")
   end
   
       

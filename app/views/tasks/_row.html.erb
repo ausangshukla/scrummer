@@ -1,7 +1,7 @@
 <% mini ||= false %>
 <tr id="task_<%= task.id%>">
 	<td><%= link_to task.summary, task %></td>
-	<td><%= task.status %></td>
+	<td class="task_<%= task.status.downcase.gsub(" ", "_") %>"><%= task.status %></td>
 	<td><%= task.task_type %></td>
 	
 	<td><%= task.feature.summary if task.feature %></td>

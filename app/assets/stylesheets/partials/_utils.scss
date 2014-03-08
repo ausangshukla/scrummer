@@ -60,14 +60,26 @@ table {
     width:40%;
   }
   
-  .status_green {
+  .task_done, .status_green {
     background: lighten($green20, 10%);
   }
-  .status_red {
+  
+  .task_blocked, .status_red {
     background: lighten($redColor, 10%);
   }
-  .status_amber {
-    background: lighten($orangeColor, 10%);
+  
+  .task_in_progress, .status_amber {
+    background: lighten($orangeColor, 15%);
+  }
+
+  .task_dead {
+    background: lighten(gray, 30%);
+   }
+}
+
+#task_board {
+  .alert {
+    padding: 0px;
   }
 }
 

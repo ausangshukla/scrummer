@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
   
   ROLES = ENV["USER_ROLES"].split(",")
+  MANAGERS = ENV["MANAGERS"].split(",")
+  MEMBERS = ENV["MEMBERS"].split(",")
   
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable

@@ -14,23 +14,34 @@
 	end
 %>
 <legend>
-	Task Board
-	<span class="pull-right" style="font-size: 0.8em;">
-		There are <%= tasks.other.count %> (<%= Task::TASK_OTHER.to_sentence %>) Tasks not shown here.
+	Task Board 
+	| 
+	<%=  link_to "Project: #{@project.name}", @project if @project %>
+	<%=  link_to "Sprint: #{@sprint.id}", @sprint if @sprint %>
+	<%=  link_to "Feature: #{@feature.summary}", @feature if @feature %>
+	|
+	<input type="text" class="filter" placeholder="Filter"  title="Type to filter tasks" style="margin-top: 8px;"/>
+	<span class="pull-right">		
+		<span style="" class="help_text">
+			<%= tasks.other.count %> (<%= Task::TASK_OTHER.to_sentence %>) tasks not shown.
+		</span>		
 	</span>
+	
 </legend>
+
+
 <div id="task_board">
 	
 	<div class="span4">
-		<legend class="center">Not Started</legend>
+		<legend class="center alert-info">Not Started</legend>
 		<%= render partial: "/tasks/index", locals: {tasks:tasks.not_started, mini:true, project: project} %>
 	</div>
 	<div class="span4">
-		<legend class="center">WIP</legend>
+		<legend class="center alert">WIP</legend>
 		<%= render partial: "/tasks/index", locals: {tasks:tasks.wip, mini:true, project: project} %>
 	</div>
 	<div class="span4">
-		<legend class="center">Completed</legend>
+		<legend class="center alert-success">Completed</legend>
 		<%= render partial: "/tasks/index", locals: {tasks:tasks.completed, mini:true, project: project} %>
 	</div>
 </div>

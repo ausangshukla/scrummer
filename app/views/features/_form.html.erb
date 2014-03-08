@@ -8,10 +8,13 @@
     <%= f.input :acceptance_criteria %>
     <%= f.input_field :project_id, :as=>:hidden %>
     <%= f.input :sprint_id, :collection=>@feature.project.sprints.collect{|u| [u.iteration, u.id]} %>
-    <%= f.input :feature_type, :collection=>Feature::TYPES %>
+    
     <%= f.input :status, :collection=>Feature::STATUSES %>
     <%= f.input :priority, :collection=>Feature::PRIORITIES %>
+    
+    <%= f.input :feature_type, :collection=>Feature::TYPES %>
     <%= f.input :points %>
+    
     <%= f.input :classification, :collection=>Feature::CLASSIFICATIONS %>
     <%= f.input :assigned_to, :collection=>@feature.project.users.collect{|u| [u.full_name, u.id]} %>
   </div>
@@ -21,3 +24,14 @@
   </div>
 <% end %>
 </div>
+
+<script>
+	$(function() {
+		points = <%= Feature::TYPE_POINTS.to_s.html_safe %>;
+		$("#feature_feature_type").change(function(){
+			selIdx = $("#feature_feature_type").prop("selectedIndex");
+			app.debug("selIdx = " + selIdx + "points = " + points[selIdx - 1])
+			$("#feature_points").val(points[selIdx - 1]);
+		});
+	});
+</script>
