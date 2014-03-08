@@ -10,6 +10,10 @@
 				<a id="tasks_view_tab" href="#tasks_view" ajaxurl="/tasks?sprint_id=<%=@sprint.id%>&layout=none" data-toggle="tab">Tasks</a>
 			</li>
 			
+			<li class="<%= active_tab_class(params, 'burndown_view') %>" >
+				<a id="burndown_view_tab" ajaxurl="/sprints/<%=@sprint.id%>/burndown_chart?layout=none" href="#burndown_view"  data-toggle="tab">Burndown</a>
+			</li>
+			
 		</ul>
 	</div>
 </div>
@@ -28,6 +32,11 @@
 
 	<div class="tab-pane in fade <%= active_tab_class(params, 'tasks_view') %>" id="tasks_view">
 		
+	</div>
+	
+	<div class="tab-pane in fade <%= active_tab_class(params, 'burndown_view') %>" id="burndown_view">
+		
+
 	</div>
 
 </div>

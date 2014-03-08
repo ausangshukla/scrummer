@@ -5,7 +5,11 @@ Scummer::Application.routes.draw do
     end
   end
 
-  resources :sprints
+  resources :sprints do
+    member do
+      get :burndown_chart
+    end
+  end
 
   resources :features
 

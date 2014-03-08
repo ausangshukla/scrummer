@@ -22,6 +22,13 @@ class User < ActiveRecord::Base
   has_many :features, :foreign_key=>:assigned_to
   has_many :tasks, :foreign_key=>:assigned_to
   
+  scope :manager, -> {
+    where(role:  MANAGERS)
+  }
+  
+  scope :team_members, -> {
+    where(role:  MEMBERS)
+  }
     
   def super_user?
     role == "Super User"
