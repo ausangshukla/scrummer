@@ -13,7 +13,14 @@
 		project = @project
 	end
 %>
+<legend>
+	Task Board
+	<span class="pull-right" style="font-size: 0.8em;">
+		There are <%= tasks.other.count %> (<%= Task::TASK_OTHER.to_sentence %>) Tasks not shown here.
+	</span>
+</legend>
 <div id="task_board">
+	
 	<div class="span4">
 		<legend class="center">Not Started</legend>
 		<%= render partial: "/tasks/index", locals: {tasks:tasks.not_started, mini:true, project: project} %>

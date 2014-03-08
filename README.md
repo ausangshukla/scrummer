@@ -35,5 +35,9 @@ Sprints
 Features
 ![Feature Details](https://raw.github.com/thimmaiah/scrummer/master/public/images/FeatureDetails.png)
 
+Task Board
+![Team](https://raw.github.com/thimmaiah/scrummer/master/public/images/TaskBoard.png)
+
+
 Team
 ![Team](https://raw.github.com/thimmaiah/scrummer/master/public/images/Team.png)
