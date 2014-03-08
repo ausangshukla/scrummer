@@ -1,5 +1,9 @@
 Scummer::Application.routes.draw do
-  resources :tasks
+  resources :tasks do
+    collection do
+      get :task_board
+    end
+  end
 
   resources :sprints
 

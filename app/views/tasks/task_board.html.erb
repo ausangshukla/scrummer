@@ -1,0 +1,29 @@
+<%
+	if params[:sprint_id].present?
+		@sprint = Sprint.find(params[:sprint_id])
+		tasks = @sprint.tasks
+		project = @sprint.project
+	elsif params[:feature_id].present?
+		@feature = Feature.find(params[:feature_id])
+		tasks = @feature.tasks
+		project = @feature.project
+	elsif params[:project_id].present?
+		@project = Project.find(params[:project_id])
+		tasks = @project.tasks
+		project = @project
+	end
+%>
+<div id="task_board">
+	<div class="span4">
+		<legend class="center">Not Started</legend>
+		<%= render partial: "/tasks/index", locals: {tasks:tasks.not_started, mini:true, project: project} %>
+	</div>
+	<div class="span4">
+		<legend class="center">WIP</legend>
+		<%= render partial: "/tasks/index", locals: {tasks:tasks.wip, mini:true, project: project} %>
+	</div>
+	<div class="span4">
+		<legend class="center">Completed</legend>
+		<%= render partial: "/tasks/index", locals: {tasks:tasks.completed, mini:true, project: project} %>
+	</div>
+</div>

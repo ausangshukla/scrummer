@@ -16,4 +16,6 @@
 //= require twitter/bootstrap
 //= require_tree ./external
 //= require_tree ./scrummer
+//= require ./highcharts/highcharts.js
+//= require ./highcharts/exporting.js
 

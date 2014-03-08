@@ -2,6 +2,7 @@ class Feature < ActiveRecord::Base
   PRIORITIES = ENV["FEATURE_PRIORITIES"].split(",")
   CLASSIFICATIONS = ENV["FEATURE_CLASSIFICATIONS"].split(",")
   STATUSES = ENV["FEATURE_STATUSES"].split(",")
+  TYPES = ENV["FEATURE_TYPES"].split(",")
     
   belongs_to :project
   belongs_to :sprint
@@ -15,6 +16,7 @@ class Feature < ActiveRecord::Base
      
   def init_defaults
     self.priority       ||= PRIORITIES[0]
+    self.feature_type   ||= TYPES[-1]
     self.status         ||= STATUSES[0]
     self.classification ||= CLASSIFICATIONS[0]
     self.planned_hours  ||= 0

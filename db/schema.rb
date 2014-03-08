@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140307080653) do
+ActiveRecord::Schema.define(version: 20140308044512) do
 
   create_table "delayed_jobs", force: true do |t|
     t.integer  "priority",   default: 1, null: false
@@ -55,6 +55,7 @@ ActiveRecord::Schema.define(version: 20140307080653) do
     t.integer  "sprint_id"
     t.float    "planned_hours"
     t.float    "actual_hours"
+    t.string   "feature_type",        limit: 20
   end
 
   add_index "features", ["assigned_to"], name: "index_features_on_assigned_to", using: :btree

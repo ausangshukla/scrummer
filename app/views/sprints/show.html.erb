@@ -32,4 +32,10 @@
 	</table>
 </div>
 
+<%= render partial: "/sprints/burnout_chart", 
+	locals: { 	title: @sprint.project.name, 
+				sub_title: "Sprint: #{@sprint.iteration}" ,
+				days: @sprint.days,
+				remaining_days: @sprint.remaining_days.values  } %>
+				
 <%= render partial: "/features/index", locals: {features: @sprint.features, project: @sprint.project, sprint: @sprint} %>

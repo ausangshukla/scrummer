@@ -13,7 +13,7 @@ class FeaturesController < InheritedResources::Base
   end
 
   ALLOWED_FIELDS =
-  [ :summary, :details, :acceptance_criteria, :project_id, :sprint_id, :status, :priority, 
+  [ :summary, :details, :acceptance_criteria, :project_id, :sprint_id, :feature_type, :status, :priority, 
     :points, :classification, :assigned_to ]
     
   private

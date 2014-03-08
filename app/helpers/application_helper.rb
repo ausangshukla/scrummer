@@ -60,10 +60,17 @@ module ApplicationHelper
 
   def display_short_date(input_date)
     if input_date
-      return inp_date.strftime("%b %d, %y")
+      return input_date.strftime("%b %d, %y")
     end
     return ""
   end
+  
+  def display_mini_date(input_date)
+     if input_date
+       return input_date.strftime("%m %d")
+     end
+     return ""
+   end
 
   def display_date_time(input_date)
     if input_date

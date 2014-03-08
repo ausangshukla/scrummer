@@ -4,11 +4,32 @@ class Task < ActiveRecord::Base
   STATUSES  = ENV["TASK_STATUSES"].split(",")
   TYPES     = ENV["TASK_TYPES"].split(",")
     
+    
+  TASK_DONE         = ENV["TASK_DONE"].split(",")
+  TASK_WIP          = ENV["TASK_WIP"].split(",")
+  TASK_NOT_STARTED  = ENV["TASK_NOT_STARTED"].split(",")
+  TASK_OTHER        = ENV["TASK_OTHER"].split(",")
+    
   belongs_to :project
   belongs_to :feature
   belongs_to :user, :foreign_key=>:assigned_to
   
   validates_presence_of :summary, :status, :task_type
+  
+  scope :completed, -> {
+    where(status:TASK_DONE)
+  }
+  scope :wip, -> {
+    where(status:TASK_WIP)
+  }
+  
+  scope :not_started, -> {
+    where(status:TASK_NOT_STARTED)
+  }
+  
+  scope :other, -> {
+    where(status:TASK_OTHER)
+  }
 
   after_save ThinkingSphinx::RealTime.callback_for(:task)
   after_initialize :init_defaults

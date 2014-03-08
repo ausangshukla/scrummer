@@ -2,13 +2,21 @@
 	<td><%= link_to task.summary, task %></td>
 	<td><%= task.status %></td>
 	<td><%= task.task_type %></td>
-	<td><%= task.user.full_name if task.user %></td>
+	
 	<td><%= task.feature.summary if task.feature %></td>
+	
+	<% unless mini %>
 	<td><%= task.planned_hours %></td>
-	<td><%= task.actual_hours %></td>
-	<td class="center"> <% if can?(:manage, task) %>
-	<%= link_to 'Completed', task_path(task, "task[status]"=>"Done"), :method=>:patch, :remote=>true, :class=>"btn btn-mini btn-success" if task.status != "Done" %>
-	<%= link_to 'Edit', edit_task_path(task), :class=>"btn btn-mini btn-primary" %>
-	<%= link_to 'Delete', task, method: :delete, data: { confirm: 'Are you sure?' } , :remote=>true, :class=>"btn btn-mini btn-danger"%>
-	<% end %> </td>
+	<td><%= task.actual_hours %></td>	
+	<td><%= task.user.full_name if task.user %></td>
+	<td><%= display_date_time task.updated_at %></td>
+	<td class="center"> 
+		<% if can?(:manage, task) %>
+			<%= link_to 'Completed', task_path(task, "task[status]"=>"Done"), data: { confirm: 'Mark this task as done ?' }, 
+				:method=>:patch, :remote=>true, :class=>"btn btn-mini btn-success" if task.status != "Done" %>
+			<%= link_to 'Edit', edit_task_path(task), :class=>"btn btn-mini btn-primary" %>
+			<%= link_to 'Delete', task, method: :delete, data: { confirm: 'Are you sure?' } , :remote=>true, :class=>"btn btn-mini btn-danger"%>
+		<% end %> 
+	</td>
+	<% end %>
 </tr>

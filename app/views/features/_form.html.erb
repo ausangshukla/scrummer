@@ -8,6 +8,7 @@
     <%= f.input :acceptance_criteria %>
     <%= f.input_field :project_id, :as=>:hidden %>
     <%= f.input :sprint_id, :collection=>@feature.project.sprints.collect{|u| [u.iteration, u.id]} %>
+    <%= f.input :feature_type, :collection=>Feature::TYPES %>
     <%= f.input :status, :collection=>Feature::STATUSES %>
     <%= f.input :priority, :collection=>Feature::PRIORITIES %>
     <%= f.input :points %>

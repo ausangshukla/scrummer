@@ -15,6 +15,7 @@
     <tr>
       <th>Summary</th>
       <th>Sprint</th>
+      <th>Type</th>
       <th>Status</th>
       <th>Priority</th>
       <th>Points</th>
@@ -31,6 +32,7 @@
       <tr>
         <td><%= link_to feature.summary, feature %></td>
         <td><%= feature.sprint.iteration if feature.sprint %></td>
+        <td><%= feature.feature_type %></td>
         <td><%= feature.status %></td>
         <td><%= feature.priority %></td>
         <td><%= feature.points %></td>

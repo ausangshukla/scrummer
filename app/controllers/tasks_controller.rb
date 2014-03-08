@@ -8,11 +8,19 @@ class TasksController < InheritedResources::Base
   def new
     @task.user = current_user
   end
+  
+  def task_board
+    
+  end
     
   def index
     if(params[:project_id].present?)
       @project = Project.find(params[:project_id])
       @tasks = @project.tasks
+    elsif(params[:sprint_id].present?)
+      @sprint = Sprint.find(params[:sprint_id])
+      @project = @sprint.project  
+      @tasks = @sprint.tasks          
     end
     
     if(params[:feature_id].present?)
@@ -22,6 +30,9 @@ class TasksController < InheritedResources::Base
     params[:tasks_for] = "My" if params[:tasks_for].blank? 
     if(params[:tasks_for] == "My")
       @tasks = @tasks.where(assigned_to: current_user.id)
+    end
+    if(params[:status].present?)
+      @tasks = @tasks.where(status: params[:status])
     end
     
     @tasks = @tasks.includes(:user, :feature).order("users.last_name, tasks.id desc")

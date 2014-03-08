@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   
-  ROLES = ["Team Member", "Scrum Master", "Product Owner", "Manager", "Super User"]
+  ROLES = ENV["USER_ROLES"].split(",")
   
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -19,13 +19,14 @@ class User < ActiveRecord::Base
 
   has_many :features, :foreign_key=>:assigned_to
   has_many :tasks, :foreign_key=>:assigned_to
+  
     
   def super_user?
     role == "Super User"
   end
   
   def team_member?
-    role != "Super User"
+    role == "Team Member"
   end
   
   

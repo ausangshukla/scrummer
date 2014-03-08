@@ -1,5 +1,8 @@
 class Project < ActiveRecord::Base
+  
   RAG_STATUSES = ["Red", "Amber", "Green"]
+  HOURS_PER_DAY = ENV["HOURS_PER_DAY"].to_i
+      
   validates_presence_of :name
   
   has_many :features, :dependent=>:delete_all

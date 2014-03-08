@@ -1,59 +1,91 @@
-<legend>
-	Tasks
-	
-	<span class="pull-right">
-		
-		<%
-			feature ||= nil 
-			feature_id = feature ? feature.id : params[:feature_id] 
-		%>
-		<%= link_to "New Task", new_task_path("task[project_id]"=> project.id, "task[feature_id]"=> feature_id), 
-			:style=>"margin-top: -8px;", :class=>"btn btn-primary"  if project && can?(:create, Task) %>
-		
-		<input type="text" class="filter" placeholder="Filter"  title="Type to filter tasks"/>
-		
-		<%= simple_form_for(Task.new, :action=>"/tasks", :html=>{:style=>"display:inline;"}) do |f| %>
-			<%= f.input_field :tasks_for, 
-				:collection=>[["My Tasks","My"],["All Tasks", "All"]], 
-				:id=>"tasks_for", :name=>"tasks_for", :title=>"Show My/All Tasks", 
-				:class=>"input-small", :selected=>params[:tasks_for] %>
-		<% end %>
-		
-	</span>
-</legend>
+<% 
+mini 	||= nil
+unless mini 
+%>
 
+	<legend>
+		Tasks
+		
+		<span class="pull-right">
+			
+			<%			
+				feature ||= nil 
+				feature_id = feature ? feature.id : params[:feature_id] 
+			%>
+		
+		 
+			<input type="text" class="filter" placeholder="Filter"  title="Type to filter tasks"/>
+			
+			<%= simple_form_for(Task.new, :action=>"/tasks", :html=>{:style=>"display:inline;"}) do |f| %>
+				
+				<%= f.input_field :tasks_for, 
+					:collection=>[["My Tasks","My"],["All Tasks", "All"]], 
+					:id=>"tasks_for", :name=>"tasks_for", :title=>"Show My/All Tasks", 
+					:class=>"input-medium", :selected=>params[:tasks_for] %>
+					
+				<%= f.input_field :status, 
+					:collection=>[""].concat(Task::STATUSES), 
+					:id=>"status", :name=>"status", :title=>"Filter by Status", 
+					:class=>"input-medium", :selected=>params[:status] %>
+				
+				
+				<%= link_to "New Task", new_task_path("task[project_id]"=> project.id, "task[feature_id]"=> feature_id), 
+					:style=>"margin-top: -8px;", :class=>"btn btn-primary"  if project && can?(:create, Task) %>
+					
+			<% end %>
+		
+		
+		</span>
+	</legend>
+	
+<% end %>
+
+<% unless mini %> 
 <div>
 	<% @task = Task.new(project_id: project.id, feature_id: feature_id, assigned_to: current_user.id) %>
 	<%= render partial: "/tasks/form_inline" %>
 </div>
+<% end %>
 
-<table class="table row-click table-bordered">
+<table class="table row-click table-bordered table-condensed">
   <thead>
     <tr>
       <th>Summary</th>
       <th>Status</th>
       <th>Task type</th>
-      <th>Assigned to</th>
       <th>Feature</th>
+      <% unless mini %>
       <th>Planned hours</th>
       <th>Actual hours</th>
+      <th>Assigned to</th>
+      <th>Updated</th>
       <th class="action_col"></th>
+      <% end %>
     </tr>
   </thead>
 
   <tbody id="tasks_table_body" class="searchable">
     <% tasks.each do |task| %>
-      <%= render partial:"/tasks/row", locals:{task:task}%>
+      <%= render partial:"/tasks/row", locals:{task:task, mini: mini}%>
     <% end %>
   </tbody>
 </table>
 
 <script>
 	app.filterTable();
-	$("#tasks_for").change(function(){
-		url = "/tasks?project_id=<%=project.id%>&feature_id=<%=feature_id%>&layout=none" + "&tasks_for=" + $("#tasks_for").val();
+	
+	function loadTasks() {
+		url = "/tasks?project_id=<%=project.id%>&feature_id=<%=feature_id%>&layout=none" + 
+			  "&tasks_for=" + encodeURIComponent($("#tasks_for").val()) +
+			  "&status=" + encodeURIComponent($("#status").val());
+			  
 		target = $("#tasks_view_tab").attr("href");
 		app.loadAjaxTab("#tasks_view_tab", url, "#tasks_view");
+	}
+	
+	$("#tasks_for, #status").change(function(){
+		loadTasks();
 	});
+	
 	
 </script>
