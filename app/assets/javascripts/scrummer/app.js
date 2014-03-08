@@ -11,6 +11,27 @@ var app = {
 		});
 	},
 
+	multi_sel : function() {
+		$('.multiselect').multiselect({
+			buttonClass : 'btn',
+			buttonWidth : 'auto',
+			buttonContainer : '<div class="btn-group multiselect-checkbox" />',
+			maxHeight : false,
+			buttonText : function(options) {
+				if (options.length == 0) {
+					return 'None selected <b class="caret"></b>';
+				} else if (options.length > 6) {
+					return options.length + ' selected  <b class="caret"></b>';
+				} else {
+					var selected = '';
+					options.each(function() {
+						selected += $(this).text() + ', ';
+					});
+					return selected.substr(0, selected.length - 2) + ' <b class="caret"></b>';
+				}
+			}
+		});
+	},
 	initUserTypeAhead : function(field_name, callback) {
 		app.debug('initUserTypeAhead called ');
 
@@ -89,18 +110,18 @@ var app = {
 		baseURL = '';
 		if (url) {
 			ajaxUrl = url;
-			targetID = target;	
+			targetID = target;
 		} else {
 			ajaxUrl = $(e.target).attr("ajaxurl");
 			// find the tabs target div
 			pattern = /#.+/gi//use regex to get anchor(==selector)
-			targetID = e.target.toString().match(pattern)[0];			
+			targetID = e.target.toString().match(pattern)[0];
 		}
 		//window.history.pushState('','',ajaxUrl);
 		//get anchor
 		app.debug("Clicked borrowerTab with " + ajaxUrl + " target = " + targetID);
 		if (ajaxUrl && ajaxUrl.length > 0) {
-			
+
 			//load content for selected tab
 			$.blockUI();
 			$(targetID).load(baseURL + ajaxUrl, function(responseText, status, req) {
@@ -182,7 +203,7 @@ var app = {
 		$(document).ajaxStop($.unblockUI);
 
 		app.rowClick(div);
-
+		app.multi_sel();
 		$("[title]").tooltip();
 	},
 

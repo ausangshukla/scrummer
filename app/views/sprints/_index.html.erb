@@ -12,8 +12,11 @@
       <th>Iteration</th>
       <th>Start date</th>
       <th>End date</th>
+      
+      <th>Actual hours</th>
       <th>Planned hours</th>
-      <th>Actual hours</th>      
+      <th>Available hours</th>
+            
       <th>Rag status</th>
       <th class="action_col"></th>
     </tr>
@@ -25,8 +28,11 @@
         <td><%= link_to sprint.iteration, sprint %></td>
         <td><%= sprint.start_date %></td>
         <td><%= sprint.end_date %></td>
-        <td><%= sprint.planned_hours %></td>
-		<td><%= sprint.actual_hours %></td>	
+        
+        <td><%= sprint.actual_hours %> </td>
+        <td class="<%= sprint.overflow? ? "status_red" : "status_green"  %>"><%= sprint.planned_hours %></td>		
+		<td><%= sprint.available_hours %></td>
+				
         <td><%= sprint.rag_status %></td>
         <td class="center">
         	<% if can?(:manage, sprint) %>

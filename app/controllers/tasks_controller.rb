@@ -34,7 +34,7 @@ class TasksController < InheritedResources::Base
       @tasks = @tasks.where(assigned_to: current_user.id)
     end
     if(params[:status].present?)
-      @tasks = @tasks.where(status: params[:status])
+      @tasks = @tasks.where(status: params[:status].split(","))
     end
     
     @tasks = @tasks.includes(:user, :feature, :project=>[:project_user_mappings]).order("users.last_name, tasks.id desc")

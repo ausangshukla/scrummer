@@ -41,7 +41,7 @@
 			
 	<tr>
 	  <td>Project:</td>
-	  <td><%= link_to @task.project.name, @task.project %></td>
+	  <td><%= link_to @task.project.name, project_path(@task.project, tab: "tasks_view_tab") %></td>
 	</tr>
 	
 			

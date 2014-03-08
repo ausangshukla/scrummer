@@ -19,9 +19,17 @@ class Sprint < ActiveRecord::Base
     days * self.project.project_user_mappings.team_members.count
   end
   
+  def available_hours
+    man_days * Project::HOURS_PER_DAY
+  end
+  
+  def overflow?
+     available_hours < planned_hours
+  end
+  
   def remaining_days
 
-    planned_days = days
+    planned_days = (Date.today - start_date).to_i
 
     cum_hours = {}
     (0..planned_days).each do |day|
@@ -31,9 +39,11 @@ class Sprint < ActiveRecord::Base
     # get the cumulative hours logged per day
     self.tasks.each do |t|
       date = t.updated_at.to_date
-      day = (date - start_date).to_i
-      cum_hours[day] ||= 0
-      cum_hours[day] += t.actual_hours
+      if date <= Date.today
+        day = (date - start_date).to_i
+        cum_hours[day] ||= 0
+        cum_hours[day] += t.actual_hours
+      end
     end
 
     total_planned_hours = planned_days * Project::HOURS_PER_DAY

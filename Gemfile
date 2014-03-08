@@ -5,7 +5,7 @@ gem 'honeybadger'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.1'
 gem "devise"
-gem "cancan"
+gem "cancan", :git=>"https://github.com/neubloc/cancan.git"
 gem "high_voltage"
 gem 'thin'
 gem 'paperclip'

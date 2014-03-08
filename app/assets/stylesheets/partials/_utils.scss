@@ -77,6 +77,11 @@ table {
    }
 }
 
+#task_filter {
+  .multiselect-checkbox {
+    margin-top: -8px;
+  }
+}
 #task_board {
   .alert {
     padding: 0px;

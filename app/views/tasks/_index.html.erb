@@ -20,17 +20,22 @@ unless mini
 		 
 			<input type="text" class="filter" placeholder="Filter"  title="Type to filter tasks"/>
 			
-			<%= simple_form_for(Task.new, :action=>"/tasks", :html=>{:style=>"display:inline;"}) do |f| %>
+			<%= simple_form_for(Task.new, :action=>"/tasks", :html=>{:style=>"display:inline;", :id=>"task_filter"}) do |f| %>
 				
 				<%= f.input_field :tasks_for, 
 					:collection=>[["My Tasks","My"],["All Tasks", "All"]], 
 					:id=>"tasks_for", :name=>"tasks_for", :title=>"Show My/All Tasks", 
 					:class=>"input-medium", :selected=>params[:tasks_for] %>
 					
-				<%= f.input_field :status, 
-					:collection=>[""].concat(Task::STATUSES), 
-					:id=>"status", :name=>"status", :title=>"Filter by Status", 
-					:class=>"input-medium", :selected=>params[:status] %>
+				<% 
+					selected ||= nil
+					selected ||= params[:status].split(",") if params[:status] 
+				%>
+				<%= f.input_field :status, :multiple=>"multiple",
+					:collection=>(Task::STATUSES), 
+					:id=>"status", :name=>"status", :tooltip=>"Filter by Status", 
+					:class=>"input-medium multiselect",  
+					:selected=>selected %>
 									
 			<% end %>
 			

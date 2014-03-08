@@ -6,6 +6,12 @@ GIT
       rails (~> 4.0.0)
       will_paginate (~> 3.0)
 
+GIT
+  remote: https://github.com/neubloc/cancan.git
+  revision: 5984ff5d7145b688a335411e646fd723a062ff53
+  specs:
+    cancan (1.6.10)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -63,7 +69,6 @@ GEM
     bullet (4.8.0)
       activesupport
       uniform_notifier (>= 1.4.0)
-    cancan (1.6.10)
     capistrano (2.15.5)
       highline
       net-scp (>= 1.0.0)
@@ -381,7 +386,7 @@ DEPENDENCIES
   axlsx_rails
   bootstrap-will_paginate
   bullet
-  cancan
+  cancan!
   capybara
   cocoon
   coffee-rails (~> 4.0.0)

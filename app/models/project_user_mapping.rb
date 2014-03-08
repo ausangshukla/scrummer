@@ -5,11 +5,11 @@ class ProjectUserMapping < ActiveRecord::Base
   validates_presence_of :role, :user_id, :project_id
   
   scope :manager, -> {
-    where(role:  MANAGERS)
+    where(role:  User::MANAGERS)
   }
   
   scope :team_members, -> {
-    where(role:  MEMBERS)
+    where(role:  User::MEMBERS)
   }
   
 end
