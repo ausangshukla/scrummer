@@ -10,11 +10,13 @@
 	elsif params[:project_id].present?
 		@project = Project.find(params[:project_id])
 		tasks = @project.tasks
-		project = @project
-		if params[:user_id].present?
-			@user = User.find(params[:user_id])
-			tasks = tasks.where(assigned_to: params[:user_id])
-		end
+		project = @project		
+	end
+	
+	if params[:user_id].present?
+		@user = User.find(params[:user_id])
+		tasks ||= Task.all
+		tasks = tasks.where(assigned_to: params[:user_id])
 	end
 	
 	if params[:week_of].present?
@@ -27,7 +29,7 @@
 <legend>
 	Task Board 
 	| 
-	<%=  link_to "Project: #{project.name}", project if project %>
+	<%=  project ? (link_to "Project: #{project.name}", project) : "All"  %>
 	<%=  link_to " | Sprint: #{@sprint.iteration}", @sprint if @sprint %>
 	<%=  link_to " | Feature: #{@feature.summary}", @feature if @feature %>
 	<%=  link_to " | User: #{@user.full_name}", @user if @user %>

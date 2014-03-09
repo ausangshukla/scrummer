@@ -14,7 +14,19 @@
 					<%= render :partial=>'/layouts/manager_menu' %>
 					<% end %>
 
-					<li class='divider-vertical'></li>
+					<li>
+						<%= link_to projects_path, :title=>"Projects" do %>
+						<i class="icon icon-th-list"></i>
+						Projects
+						<% end %>
+					</li>
+
+					<li>
+						<%= link_to task_board_tasks_path(:user_id => current_user.id), :title=>"Tasks" do %>
+						<i class="icon icon-tasks"></i>
+						Task Board
+						<% end %>
+					</li>
 					<li>
 						<%= link_to destroy_user_session_path, :title=>'Sign Out' do %>
 						<i class="icon icon-lock"></i>
@@ -22,7 +34,6 @@
 						<% end %>
 					</li>
 
-					<li class='divider-vertical'></li>
 					<li>
 						<%= link_to user_path(current_user), :title=>'User Profile' do %>
 						<i class="icon icon-user"></i>
