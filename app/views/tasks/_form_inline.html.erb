@@ -1,4 +1,4 @@
-<div class="alert alert-success" style="width:80%;margin: 0px auto; padding-bottom: 0px; margin-bottom: 10px;" >
+<div class="alert alert-success" style="width:65%;margin: 0px auto; padding-bottom: 0px; margin-bottom: 10px;" >
 <%= simple_form_for(@task, :html=>{:class=>"form_inline", :style=>"margin: 1px auto;"}, :remote=>true) do |f| %>
   <%= f.error_notification %>
 
@@ -11,7 +11,6 @@
     <%= f.input_field :feature_id, :collection=>@task.project.features.collect{|u| [u.summary, u.id]}, :title=>"Feature" %>
     
     <%= f.input_field :planned_hours , :class=>"input-small", :title=>"Planned Hours", :class=>"input-mini" %>    
-    <%= f.input_field :actual_hours , :class=>"input-small", :title=>"Actual Hours", :class=>"input-mini" %>    
     <%= f.input_field :details , :as=>:string, :placeholder=>"Enter task details here", :class=>"", :style=>"width:70%;", :title=>"Details" %>
     <%= f.submit "Save Task", :class=>"btn btn-primary", :style=>"margin-top: -10px;" %>
   </fieldset>

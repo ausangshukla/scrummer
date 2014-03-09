@@ -39,17 +39,27 @@ unless mini
 									
 			<% end %>
 			
+			|
+			
 			<%= link_to "New Task", new_task_path("task[project_id]"=> project_id, "task[feature_id]"=> feature_id), 
 					:style=>"margin-top: -8px;", :class=>"btn btn-primary"  if project && can?(:create, Task) %>
 			
+			| 
+			
 			<% if feature_id.present? %>		
-				<%= link_to "Task Board", task_board_tasks_path(:feature_id=> feature_id), 
+				<%= link_to "Feature Task Board", task_board_tasks_path(:feature_id=> feature_id), 
 					:style=>"margin-top: -8px;", :class=>"btn btn-primary" %>
+				<%= link_to "My Task Board", task_board_tasks_path(:feature_id=> feature_id, :user_id=>current_user.id), 
+					:style=>"margin-top: -8px;", :class=>"btn btn-primary" %>	
 			<% elsif sprint_id.present? %>
-				<%= link_to "Task Board", task_board_tasks_path(:sprint_id=> sprint_id), 
+				<%= link_to "Sprint Task Board", task_board_tasks_path(:sprint_id=> sprint_id), 
+					:style=>"margin-top: -8px;", :class=>"btn btn-primary" %>
+				<%= link_to "My Task Board", task_board_tasks_path(:sprint_id=> sprint_id, :user_id=>current_user.id), 
 					:style=>"margin-top: -8px;", :class=>"btn btn-primary" %>
 			<% elsif project_id.present? %>
-				<%= link_to "Task Board", task_board_tasks_path(:project_id=> project_id), 
+				<%= link_to "Project Task Board", task_board_tasks_path(:project_id=> project_id), 
+					:style=>"margin-top: -8px;", :class=>"btn btn-primary" %>
+				<%= link_to "My Task Board", task_board_tasks_path(:project_id=> project_id, :user_id=>current_user.id), 
 					:style=>"margin-top: -8px;", :class=>"btn btn-primary" %>
 			<% end %>	
 				

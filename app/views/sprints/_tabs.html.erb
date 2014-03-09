@@ -46,10 +46,5 @@
 <script>
 	$(function() {
 		app.ajaxTabs("#sprintTab");
-		app.debug("got " + $("#currTab").val());
-		if ($("#currTab").val() && $("#currTab").val().length > 0) {
-			app.debug("clicking " + "#" + $("#currTab").val());
-			$("#" + $("#currTab").val()).click();
-		}
 	}); 
 </script>

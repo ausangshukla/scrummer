@@ -51,6 +51,7 @@ class Ability
   
   def manager_privilages    
     team_member_privilages
+    can [:create], Project
     can [:manage], Project, :project_user_mappings=> {:user_id=>@user.id, :role=>User::MANAGERS}
     can [:manage], Sprint, :project =>{ :project_user_mappings=> {:user_id=>@user.id, :role=>User::MANAGERS} }
     can [:manage], Feature, :project =>{ :project_user_mappings=> {:user_id=>@user.id, :role=>User::MANAGERS} }
