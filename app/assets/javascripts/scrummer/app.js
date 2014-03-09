@@ -204,7 +204,7 @@ var app = {
 
 		app.rowClick(div);
 		app.multi_sel();
-		$("[title]").tooltip();
+		$("[title]").tooltip({"html":true});
 	},
 
 	rowClick : function(div) {

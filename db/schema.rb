@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140308044512) do
+ActiveRecord::Schema.define(version: 20140309071204) do
 
   create_table "delayed_jobs", force: true do |t|
     t.integer  "priority",   default: 1, null: false
@@ -111,6 +111,7 @@ ActiveRecord::Schema.define(version: 20140308044512) do
     t.float    "remaining_hours"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "started_on"
   end
 
   add_index "tasks", ["assigned_to"], name: "index_tasks_on_assigned_to", using: :btree

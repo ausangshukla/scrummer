@@ -1,5 +1,34 @@
-<% mini ||= false %>
-<tr id="task_<%= task.id%>" title="Feature: <%= task.feature.summary if task.feature && mini %>">
+<% 
+	mini ||= false
+	if mini		
+		if task.feature
+			title ||= ""
+			title +=  'Feature: ' + task.feature.summary 
+			title += "</br>"
+		end
+		if task.details.present?
+			title ||= ""
+			title +=  'Details: ' + task.details
+			title += "</br>"
+		end  
+		if task.notes.present?
+			title ||= ""
+			title +=  'Notes: ' + task.notes
+			title += "</br>"
+		end
+		if task.planned_hours > 0
+			title ||= ""
+			title +=  'Planned Hours: ' + task.planned_hours.to_s
+			title += "</br>"
+		end
+		if task.actual_hours > 0
+			title ||= ""
+			title +=  'Actual Hours: ' + task.actual_hours.to_s
+			title += "</br>"
+		end
+	end 
+%>
+<tr id="task_<%= task.id%>" title="<%= title %>">
 	<td><%= link_to task.summary, task %></td>
 	<td class="task_<%= underscore(task.status) %>"><%= task.status %></td>
 	<td><%= task.task_type %></td>

@@ -2,6 +2,8 @@ body {
   min-width: 900px;
 }
 
+
+
 .version_change {
   color: $green20;  
 }
@@ -89,6 +91,14 @@ table {
   td {
     word-wrap:break-word;
   }
+  .tooltip {
+    .tooltip-inner {
+      text-align: left;
+      max-width: 400px;
+      background: gray;
+    } 
+  }
+
 }
 
 .center_table {
