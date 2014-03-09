@@ -4,6 +4,10 @@ class Sprint < ActiveRecord::Base
   has_many :tasks, :through => :features
 
   validates_presence_of :iteration
+  
+  scope :till_date, -> {
+    where("start_date <= ?", Date.today)
+  }
 
   after_initialize :init_defaults
   def init_defaults

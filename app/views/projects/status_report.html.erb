@@ -1,0 +1,34 @@
+<div class="status_report">
+	<legend>
+		Status Report: <%= @project.name %>
+	</legend>
+	
+	<div>
+		<% sprints = @project.sprints.till_date %>
+		<%= render partial: "/sprints/index", locals: {sprints:sprints, project:@project} %>
+	</div>
+	
+	
+	<div>
+		<% features = @project.features.in_progress.includes(:user, :sprint).order("sprints.iteration asc, features.priority") %>
+		<%= render partial: "/features/index", locals: {features:features, project:@project} %>
+	</div>
+	
+	<div>
+		<% 
+			params[:project_id] = @project.id
+			params[:week_of] = display_date(Date.today) 
+		%>
+		<%= render partial: "/tasks/task_board" %>
+	</div>
+	
+	
+</div>
+
+<script>
+	$(function() {
+		$(".btn").hide();
+		$("table td:last-child").hide();
+		$("table th:last-child").hide();
+	});
+</script>

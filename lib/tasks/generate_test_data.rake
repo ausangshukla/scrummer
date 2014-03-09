@@ -26,15 +26,17 @@ namespace :scrummer do
     
     begin    
       
-		   		(1..10).each do |j|    
-			        u = FactoryGirl.build(:user)
-			        if(rand(2) > 0)
-	            		u.role = "Scrum Master"
-			        u.save
-				    puts "User #{u.id}"              
-	      	end	
-		end	  
-    
+		   		(1..20).each do |j|    
+			        u = FactoryGirl.build(:team_member)
+	            u.save!
+		          puts "User #{u.id}"              
+         	end	    
+          (1..5).each do |j|    
+              u = FactoryGirl.build(:manager)
+              u.save!
+              puts "User #{u.id}"              
+          end     
+
     rescue Exception => exception
       puts exception.backtrace.join("\n")
       raise exception
@@ -51,6 +53,14 @@ namespace :scrummer do
       u.save
       puts u.to_xml              
       
+      u = FactoryGirl.build(:user, email: "scrum_master@scrummer.com", password: "scrum_master@scrummer.com", role: User::MANAGERS[0])
+      u.save
+      puts u.to_xml
+      
+      u = FactoryGirl.build(:user, email: "team_member@scrummer.com", password: "team_member@scrummer.com", role: User::MEMBERS[0])
+      u.save
+      puts u.to_xml
+      
 
     rescue Exception => exception
       puts exception.backtrace.join("\n")
@@ -64,14 +74,18 @@ namespace :scrummer do
     
     begin    
       
-          (1..10).each do |j|    
-              p = FactoryGirl.build(:project)
+          
+          (1..10).each do |j|
+              start_date = Date.today - 1.month - rand(2).months    
+              p = FactoryGirl.build(:project, start_date: start_date, end_date: start_date + 90.days + rand(90).days)
               p.save
               puts "Project #{p.id}" 
-              user_ids = User.all.collect(&:id).shuffle
-              (1..5).each do |i|
-                ProjectUserMapping.create(project_id:p.id, user_id:user_ids[i], role: User::ROLES[rand(User::ROLES.length)])
+              user_ids = User.team_members.collect(&:id).shuffle
+              (1..4).each do |i|
+                ProjectUserMapping.create(project_id:p.id, user_id:user_ids[i], role: User::MEMBERS[0])
               end             
+              manager_ids = User.managers.collect(&:id).shuffle
+              ProjectUserMapping.create(project_id:p.id, user_id:manager_ids[0], role: User::MANAGERS[0])              
           end 
 
     rescue Exception => exception
@@ -84,14 +98,17 @@ namespace :scrummer do
   task :generateFakeSprints => :environment do
     
     begin    
-          start_date = Date.today
+          
           Project.all.each do |p|
-             (1..4).each do |j|    
+             no_of_sprints = (p.end_date - p.start_date).to_i / 30 
+             start_date = p.start_date
+             
+             (1..no_of_sprints).each do |j|    
                 s = FactoryGirl.build(:sprint, iteration:j, project_id: p.id, start_date:start_date, end_date: start_date + 30.days)
                 s.save!
                 puts "Sprint #{s.id}"                
                 start_date = s.end_date + 1.day
-            end 
+              end 
           end
     rescue Exception => exception
       puts exception.backtrace.join("\n")
@@ -125,11 +142,21 @@ namespace :scrummer do
     begin    
           Feature.all.each do |f|
              user_ids = f.project.users.collect(&:id)
-             (1..5).each do |j|    
-                t = FactoryGirl.build(:task, project_id: f.project_id, feature_id: f.id, assigned_to: user_ids[rand(user_ids.length)])
+             (1..10).each do |j|    
+                t = FactoryGirl.build(:task, project_id: f.project_id, 
+                                      feature_id: f.id, assigned_to: user_ids[rand(user_ids.length)],
+                                      updated_at: (f.sprint.start_date + j.days) )
                 t.save!               
                 puts "Task #{t.id}" 
             end 
+            
+            (11..20).each do |j|    
+                t = FactoryGirl.build(:task, project_id: f.project_id, actual_hours: 0, 
+                                      feature_id: f.id, assigned_to: user_ids[rand(user_ids.length)],
+                                      updated_at: (f.sprint.start_date + j.days) )
+                t.save!               
+                puts "Task #{t.id}" 
+            end
           end
     rescue Exception => exception
       puts exception.backtrace.join("\n")

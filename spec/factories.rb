@@ -19,13 +19,12 @@ FactoryGirl.define do
       sign_in_count nil
     end
 
-    factory :scrum_master do
-      role {"Scrum Master"}
+    factory :manager do
+      role {User::MANAGERS[rand(User::MANAGERS.length)]}
     end
 
-    factory :team_member do
-      vendor_buyer_flag {"Vendor"}
-      role {"Team Member"}
+    factory :team_member do      
+      role {User::MEMBERS[rand(User::MEMBERS.length)]}
     end
 
   end
@@ -49,6 +48,7 @@ FactoryGirl.define do
     acceptance_criteria { Faker::Lorem.sentence(20) }
     status { Feature::STATUSES[rand(3)] }
     priority { Feature::PRIORITIES[rand(Feature::PRIORITIES.length)] }
+    feature_type { Feature::TYPES[rand(Feature::TYPES.length)] }
     classification { Feature::CLASSIFICATIONS[rand(Feature::CLASSIFICATIONS.length)] }
     points { 1 + rand(10) }
   end

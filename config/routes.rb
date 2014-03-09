@@ -15,7 +15,11 @@ Scummer::Application.routes.draw do
 
   resources :project_user_mappings
 
-  resources :projects
+  resources :projects do
+    member do
+      get :status_report
+    end
+  end
 
   as :user do
     match '/user/confirmation' => 'confirmations#update', :via => :put, :as => :update_user_confirmation

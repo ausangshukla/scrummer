@@ -1,5 +1,5 @@
 <legend>
-	Features / Stories
+	Features / Stories / Use Cases
 	<span class="pull-right">
 		<%
 			sprint ||= nil 
@@ -40,7 +40,7 @@
 		<td><%= feature.actual_hours %></td>
 	
         <td><%= feature.classification %></td>
-        <td><%= feature.user.full_name if feature.user %></td>
+        <td><%= link_to feature.user.full_name, feature.user if feature.user %></td>
         <td class="center">
         	<% if can?(:manage, project) %>
         	<%= link_to 'Edit', edit_feature_path(feature), :class=>"btn btn-mini btn-primary" %>

@@ -11,6 +11,10 @@ class Feature < ActiveRecord::Base
   has_many :tasks
 
   validates_presence_of :summary
+  
+  scope :in_progress, -> {
+    where("features.actual_hours > 0")
+  }
 
   after_save ThinkingSphinx::RealTime.callback_for(:feature)
   after_initialize :init_defaults
