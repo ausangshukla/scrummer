@@ -4,6 +4,11 @@ class Feature < ActiveRecord::Base
   STATUSES = ENV["FEATURE_STATUSES"].split(",")
   TYPES = ENV["FEATURE_TYPES"].split(",")
   TYPE_POINTS = ENV["FEATURE_TYPES_POINTS"].split(",")
+    
+  FEATURE_DONE         = ENV["FEATURE_DONE"].split(",")
+  FEATURE_WIP          = ENV["FEATURE_WIP"].split(",")
+  FEATURE_NOT_STARTED  = ENV["FEATURE_NOT_STARTED"].split(",")
+  FEATURE_OTHER        = ENV["FEATURE_OTHER"].split(",")
 
   belongs_to :project
   belongs_to :sprint
@@ -12,8 +17,19 @@ class Feature < ActiveRecord::Base
 
   validates_presence_of :summary
   
-  scope :in_progress, -> {
-    where("features.actual_hours > 0")
+  scope :completed, -> {
+    where(status:FEATURE_DONE)
+  }
+  scope :wip, -> {
+    where(status:FEATURE_WIP)
+  }
+  
+  scope :not_started, -> {
+    where(status:FEATURE_NOT_STARTED)
+  }
+  
+  scope :other, -> {
+    where(status:FEATURE_OTHER)
   }
 
   after_save ThinkingSphinx::RealTime.callback_for(:feature)

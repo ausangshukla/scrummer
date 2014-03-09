@@ -10,7 +10,7 @@
 	
 	
 	<div>
-		<% features = @project.features.in_progress.includes(:user, :sprint).order("sprints.iteration asc, features.priority") %>
+		<% features = @project.features.wip.includes(:user, :sprint).order("sprints.iteration asc, features.priority") %>
 		<%= render partial: "/features/index", locals: {features:features, project:@project} %>
 	</div>
 	

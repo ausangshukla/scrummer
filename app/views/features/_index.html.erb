@@ -2,10 +2,15 @@
 	Features / Stories / Use Cases
 	<span class="pull-right">
 		<%
+			mini ||= false
 			sprint ||= nil 
 			sprint_id = sprint ? sprint.id : nil 
 		%>
-		<%= link_to "New Feature", new_feature_path("feature[project_id]"=> project.id, "feature[sprint_id]"=> sprint_id), :class=>"btn btn-primary"  if project && can?(:manage, project) %>
+		
+		<% if !mini %>			
+			<%= link_to "New Feature", new_feature_path("feature[project_id]"=> project.id, "feature[sprint_id]"=> sprint_id), :class=>"btn btn-primary"  if project && can?(:manage, project) %>
+			<%= link_to "Feature Board", feature_board_features_path(:project_id=> project.id, :sprint_id=> sprint_id), :class=>"btn btn-success" %>
+		<% end %>
 	</span>
 
 </legend>
@@ -27,13 +32,13 @@
     </tr>
   </thead>
 
-  <tbody>
+  <tbody class="searchable">
     <% features.each do |feature| %>
       <tr>
         <td><%= link_to feature.summary, feature %></td>
-        <td><%= feature.sprint.iteration if feature.sprint %></td>
+        <td><%= link_to feature.sprint.iteration, feature.sprint if feature.sprint %></td>
         <td><%= feature.feature_type %></td>
-        <td><%= feature.status %></td>
+        <td class="feature_<%= underscore(feature.status) %>"><%= feature.status %></td>
         <td><%= feature.priority %></td>
         <td><%= feature.points %></td>
         <td><%= feature.planned_hours %></td>
@@ -42,7 +47,7 @@
         <td><%= feature.classification %></td>
         <td><%= link_to feature.user.full_name, feature.user if feature.user %></td>
         <td class="center">
-        	<% if can?(:manage, project) %>
+        	<% if can?(:manage, feature.project) %>
         	<%= link_to 'Edit', edit_feature_path(feature), :class=>"btn btn-mini btn-primary" %>
         	<%= link_to 'Delete', feature, method: :delete, data: { confirm: 'Are you sure?' } , :class=>"btn btn-mini btn-danger"%>
         	<% end %>

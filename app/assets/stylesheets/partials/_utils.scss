@@ -84,7 +84,11 @@ table {
     margin-top: -8px;
   }
 }
-#task_board {
+#task_board, #feature_board {
+  
+  .features {
+    margin-top : 50px;
+  }
   .alert {
     padding: 0px;
   }

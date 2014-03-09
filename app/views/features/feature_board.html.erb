@@ -1,0 +1,67 @@
+<%
+	if params[:sprint_id].present?
+		@sprint = Sprint.find(params[:sprint_id])
+		features = @sprint.features
+		project = @sprint.project
+	elsif params[:project_id].present?
+		@project = Project.find(params[:project_id])
+		features = @project.features
+		project = @project		
+	end
+	
+	if params[:user_id].present?
+		@user = User.find(params[:user_id])
+		features ||= Feature.all
+		features = features.where(assigned_to: params[:user_id])
+	end
+	
+	
+	features = features.includes(:user, :sprint, :project=>[:project_user_mappings]).order("features.project_id, features.priority, updated_at desc")
+%>
+<legend>
+	Feature Board 
+	| 
+	<%=  project ? (link_to "Project: #{project.name}", project) : "All"  %>
+	<%=  link_to " | Sprint: #{@sprint.iteration}", @sprint if @sprint %>
+	<%=  link_to " | User: #{@user.full_name}", @user if @user %>
+	|
+	<% if params[:week_of].present? %>
+		<span style="" class="help_text">
+			From <%= display_date(start_date) %> to <%= display_date(end_date) %>
+			:
+			<%= link_to "See All Tasks", feature_board_features_path(:project_id=> project.id), 
+					:style=>"margin-top: -8px;" %>
+		</span>
+		|
+	<% end %>
+	<input type="text" class="filter" placeholder="Filter"  title="Type to filter features" style="margin-top: 8px;"/>
+	<span class="pull-right">		
+		<span style="" class="help_text">
+			<%= features.other.count %> (<%= Feature::FEATURE_OTHER.to_sentence %>) features not shown.
+		</span>		
+	</span>
+	
+</legend>
+
+
+<div id="feature_board">
+	
+	<div class="features">
+		<legend class="center alert">WIP</legend>
+		<%= render partial: "/features/index", locals: {features:features.wip, mini:true, project: project} %>
+	</div>
+	<div class="features">
+		<legend class="center alert-info">Not Started</legend>
+		<%= render partial: "/features/index", locals: {features:features.not_started, mini:true, project: project} %>
+	</div>
+	<div class="features">
+		<legend class="center alert-success">Completed</legend>
+		<%= render partial: "/features/index", locals: {features:features.completed, mini:true, project: project} %>
+	</div>
+	
+</div>
+
+
+<script>
+	app.filterTable();
+</script>

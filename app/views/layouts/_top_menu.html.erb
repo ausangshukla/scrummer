@@ -22,11 +22,19 @@
 					</li>
 
 					<li>
+						<%= link_to feature_board_features_path(:user_id => current_user.id), :title=>"Features" do %>
+						<i class="icon icon-th-large"></i>
+						Feature Board
+						<% end %>
+					</li>
+					
+					<li>
 						<%= link_to task_board_tasks_path(:user_id => current_user.id), :title=>"Tasks" do %>
 						<i class="icon icon-tasks"></i>
 						Task Board
 						<% end %>
 					</li>
+					
 					<li>
 						<%= link_to destroy_user_session_path, :title=>'Sign Out' do %>
 						<i class="icon icon-lock"></i>

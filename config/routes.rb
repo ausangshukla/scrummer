@@ -11,7 +11,11 @@ Scummer::Application.routes.draw do
     end
   end
 
-  resources :features
+  resources :features do
+    collection do
+      get :feature_board
+    end
+  end
 
   resources :project_user_mappings
 
