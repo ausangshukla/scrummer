@@ -25,6 +25,8 @@
 		end_date = date.end_of_week + 23.hours + 59.minutes
 		tasks = tasks.where("updated_at >=? and updated_at <= ?", start_date, end_date)
 	end
+	
+	tasks = tasks.order("tasks.project_id, tasks.feature_id, updated_at desc")
 %>
 <legend>
 	Task Board 

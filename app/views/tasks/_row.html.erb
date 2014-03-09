@@ -1,23 +1,27 @@
 <% mini ||= false %>
-<tr id="task_<%= task.id%>">
+<tr id="task_<%= task.id%>" title="Feature: <%= task.feature.summary if task.feature && mini %>">
 	<td><%= link_to task.summary, task %></td>
 	<td class="task_<%= underscore(task.status) %>"><%= task.status %></td>
 	<td><%= task.task_type %></td>
-	
-	<td><%= task.feature.summary if task.feature %></td>
-	<td><%= link_to task.user.full_name, task.user if task.user %></td>
+	<td><%= link_to task.user.first_name, task.user if task.user %></td>
 	
 	<% unless mini %>
+	<td><%= task.feature.summary if task.feature %></td>
 	<td><%= task.planned_hours %></td>
 	<td><%= task.actual_hours %></td>		
 	<td><%= display_date_time task.updated_at %></td>
+	<% end %>
 	<td class="center"> 
 		<% if can?(:manage, task) %>
-			<%= link_to 'Completed', task_path(task, "task[status]"=>"Done"), data: { confirm: 'Mark this task as done ?' }, 
-				:method=>:patch, :remote=>true, :class=>"btn btn-mini btn-success" if task.status != "Done" %>
+			<%= link_to 'Completed', task_path(task, "task[status]"=>"Done", mini:mini),  
+				:method=>:patch, :remote=>true, :class=>"btn btn-mini btn-success" if ["Done", "Not Started", "Dead"].index(task.status) == nil %>
+				
+			<%= link_to 'Started', task_path(task, "task[status]"=>"In Progress", mini:mini),  
+				:method=>:patch, :remote=>true, :class=>"btn btn-mini btn-success" if ["Not Started"].index(task.status) %>
+				
 			<%= link_to 'Edit', edit_task_path(task), :class=>"btn btn-mini btn-primary" %>
 			<%= link_to 'Delete', task, method: :delete, data: { confirm: 'Are you sure?' } , :remote=>true, :class=>"btn btn-mini btn-danger"%>
 		<% end %> 
 	</td>
-	<% end %>
+	
 </tr>

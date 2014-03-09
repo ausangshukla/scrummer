@@ -1,1 +1,1 @@
-$("#task_<%=@task.id%>").replaceWith("<%=escape_javascript(render :partial => 'row', :locals => { :task => @task }) %>");
+$("#task_<%=@task.id%>").replaceWith("<%=escape_javascript(render :partial => 'row', :locals => { :task => @task, mini: params[:mini] == "true" }) %>");
