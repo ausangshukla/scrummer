@@ -41,8 +41,8 @@ class Sprint < ActiveRecord::Base
       cum_hours[day] ||= 0
     end
 
-    # get the cumulative hours logged per day till date
-    self.tasks.each do |t|
+    # get the cumulative hours logged per day till date by developers
+    self.tasks.development_tasks.each do |t|
       date = t.updated_at.to_date
       if date <= Date.today
         day = (date - start_date).to_i

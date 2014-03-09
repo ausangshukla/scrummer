@@ -1,8 +1,10 @@
 class Task < ActiveRecord::Base
   attr_accessor :tasks_for
   
-  STATUSES  = ENV["TASK_STATUSES"].split(",")
-  TYPES     = ENV["TASK_TYPES"].split(",")
+  STATUSES          = ENV["TASK_STATUSES"].split(",")
+  DEVELOPMENT_TASKS = ENV["DEVELOPMENT_TASKS"].split(",")
+  MANAGEMENT_TASKS  = ENV["MANAGEMENT_TASKS"].split(",")    
+  TYPES             = DEVELOPMENT_TASKS + MANAGEMENT_TASKS 
     
     
   TASK_DONE         = ENV["TASK_DONE"].split(",")
@@ -15,6 +17,13 @@ class Task < ActiveRecord::Base
   belongs_to :user, :foreign_key=>:assigned_to
   
   validates_presence_of :summary, :status, :task_type
+  
+  scope :development_tasks, -> {
+    where(task_type: DEVELOPMENT_TASKS)
+  }
+  scope :management_tasks, -> {
+    where(task_type: MANAGEMENT_TASKS)
+  }
   
   scope :completed, -> {
     where(status:TASK_DONE)
@@ -44,9 +53,11 @@ class Task < ActiveRecord::Base
   before_destroy :compute_hours
 
   def compute_hours
-    self.feature.planned_hours = self.feature.tasks.sum(:planned_hours)
-    self.feature.actual_hours  = self.feature.tasks.sum(:actual_hours)
-    self.feature.save
+    if self.feature
+      self.feature.planned_hours = self.feature.tasks.sum(:planned_hours) 
+      self.feature.actual_hours  = self.feature.tasks.sum(:actual_hours)
+      self.feature.save
+    end
   end
   
   

@@ -33,7 +33,7 @@ class TasksController < InheritedResources::Base
     if(params[:tasks_for] == "My")
       @tasks = @tasks.where(assigned_to: current_user.id)
     end
-    if(params[:status].present?)
+    if(params[:status].present? && params[:status] != "null")
       @tasks = @tasks.where(status: params[:status].split(","))
     end
     
