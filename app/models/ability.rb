@@ -40,7 +40,7 @@ class Ability
   def team_member_privilages
     user_privilages
     can [:read], Project, :project_user_mappings=> {:user_id=>@user.id}
-    can [:read], Sprint
+    can [:read, :burndown_chart], Sprint
     can [:read], Feature  
     can [:manage], Feature, :assigned_to => @user.id
     can [:read], Task

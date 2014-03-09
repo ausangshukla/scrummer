@@ -64,5 +64,7 @@
 </div>
 
 <div id="tasks_view">
-	<%= render partial: "/tasks/index", locals: {tasks:current_user.tasks.where(feature_id:@feature.id), project: @feature.project, feature:@feature} %>
+	<%= render partial: "/tasks/index", 
+		locals: {tasks:current_user.tasks.where(feature_id:@feature.id).includes(:user, :feature), 
+		project: @feature.project, feature:@feature} %>
 </div>

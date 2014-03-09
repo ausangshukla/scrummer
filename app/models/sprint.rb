@@ -59,9 +59,10 @@ class Sprint < ActiveRecord::Base
 
     cum_days = {}
     # Get the remaining hours after every days work
+    dev_count = developers.count
     (0..planned_days).each do |day|
       todays_hours = cum_hours[day]
-      cum_days[day] = ((total_planned_hours - cum_hours[day])/(Project::HOURS_PER_DAY * developers.count)).to_i
+      cum_days[day] = ((total_planned_hours - cum_hours[day])/(Project::HOURS_PER_DAY * dev_count)).to_i
       total_planned_hours -= todays_hours
     end
 

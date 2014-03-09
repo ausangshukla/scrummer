@@ -3,6 +3,7 @@ class SprintsController < InheritedResources::Base
   before_filter :authenticate_user!, :except=>[]
   load_and_authorize_resource :except=>[]
   
+  
   def index
     if(params[:project_id].present?)
       @project = Project.find(params[:project_id])
