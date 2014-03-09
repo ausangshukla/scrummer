@@ -35,7 +35,7 @@
 	<td><%= link_to task.user.first_name, task.user if task.user %></td>
 	
 	<% unless mini %>
-	<td><%= task.feature.summary if task.feature %></td>
+	<td><%= link_to task.feature.summary, task.feature if task.feature %></td>
 	<td><%= task.planned_hours %></td>
 	<td><%= task.actual_hours %></td>		
 	<td><%= display_date_time task.updated_at %></td>

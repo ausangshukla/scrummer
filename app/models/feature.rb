@@ -55,6 +55,10 @@ class Feature < ActiveRecord::Base
       self.sprint.save
     end
   end
+  
+  def overflow?
+    actual_hours > planned_hours
+  end
 
 end
 

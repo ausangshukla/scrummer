@@ -62,19 +62,19 @@ table {
     width:40%;
   }
   
-  .task_done, .status_green {
+  .task_done, .status_green, .feature_done {
     background: lighten($green20, 10%);
   }
   
-  .task_blocked, .status_red {
+  .task_blocked, .status_red, .feature_dead {
     background: lighten($redColor, 10%);
   }
   
-  .task_in_progress, .status_amber {
+  .task_in_progress, .status_amber, .feature_in_progress {
     background: lighten($orangeColor, 15%);
   }
 
-  .task_dead {
+  .task_dead, .feature_dead {
     background: lighten(gray, 30%);
    }
 }

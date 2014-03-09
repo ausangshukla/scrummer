@@ -22,14 +22,16 @@
     <tr>
       <th>Summary</th>
       <th>Sprint</th>
+      <th>Classification</th>
+      <th>Priority</th>
       <th>Type</th>
       <th>Status</th>
-      <th>Priority</th>
+      <th>Assigned to</th>
       <th>Points</th>
       <th>Planned hours</th>
       <th>Actual hours</th>      
-      <th>Classification</th>
-      <th>Assigned to</th>
+      
+      
       <th class="action_col"></th>
     </tr>
   </thead>
@@ -39,16 +41,15 @@
       <tr>
         <td><%= link_to feature.summary, feature %></td>
         <td><%= link_to feature.sprint.iteration, feature.sprint if feature.sprint %></td>
+        <td><%= feature.classification %></td>
+        <td><%= feature.priority %></td>
         <td><%= feature.feature_type %></td>
         <td class="feature_<%= underscore(feature.status) %>"><%= feature.status %></td>
-        <td><%= feature.priority %></td>
+    	<td><%= link_to feature.user.full_name, feature.user if feature.user %></td>    
         <td><%= feature.points %></td>
         <td><%= feature.planned_hours %></td>
-		<td><%= feature.actual_hours %></td>
-	
-        <td><%= feature.classification %></td>
-        <td><%= link_to feature.user.full_name, feature.user if feature.user %></td>
-        <td class="center">
+		<td class="<%= feature.overflow? ? "status_red" : "status_green"  %>"><%= feature.actual_hours %></td>
+	    <td class="center">
         	<% if can?(:manage, feature.project) %>
         	<%= link_to 'Edit', edit_feature_path(feature), :class=>"btn btn-mini btn-primary" %>
         	<%= link_to 'Delete', feature, method: :delete, data: { confirm: 'Are you sure?' } , :class=>"btn btn-mini btn-danger"%>
