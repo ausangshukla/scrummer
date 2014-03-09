@@ -65,13 +65,15 @@ class Task < ActiveRecord::Base
   
   before_save :check_started
   def check_started
-    if self.status == "In Progress" && self.status != self.status_was
+    if self.status == TASK_INPROGRESS && self.status != self.status_was
       self.started_on = Time.now
     end 
-    if self.status == "Done" && self.status != self.status_was && self.started_on
+    
+    # TODO - improve as task could move to Blocked and then Done
+    if self.status == TASK_COMPLETED && self.status != self.status_was && self.started_on
       # http://stackoverflow.com/questions/11680519/round-to-closest-integer-or-closest-5-in-ruby
       x = ((Time.now - self.started_on) / 60 / 60) 
-      self.actual_hours = (x * 2).round / 2.0
+      self.actual_hours += (x * 2).round / 2.0
     end
   end
   

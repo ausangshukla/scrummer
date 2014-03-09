@@ -8,9 +8,11 @@
 		%>
 		
 		<% if !mini %>			
-			<%= link_to "New Feature", new_feature_path("feature[project_id]"=> project.id, "feature[sprint_id]"=> sprint_id), :class=>"btn btn-primary"  if project && can?(:manage, project) %>
-			<%= link_to "Feature Board", feature_board_features_path(:project_id=> project.id, :sprint_id=> sprint_id), :class=>"btn btn-success" %>
+			<input type="text" class="filter" placeholder="Filter"  title="Type to filter features" style="margin-top: 8px;"/>
+			<%= link_to "New Feature", new_feature_path("feature[project_id]"=> project.id, "feature[sprint_id]"=> sprint_id), :class=>"btn btn-primary"  if project && can?(:manage, project) %>			
+			<%= link_to "Feature Board", feature_board_features_path(:project_id=> project.id, :sprint_id=> sprint_id), :class=>"btn btn-success" %>			
 		<% end %>
+		
 	</span>
 
 </legend>
