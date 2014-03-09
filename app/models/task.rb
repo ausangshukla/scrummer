@@ -12,6 +12,9 @@ class Task < ActiveRecord::Base
   TASK_NOT_STARTED  = ENV["TASK_NOT_STARTED"].split(",")
   TASK_OTHER        = ENV["TASK_OTHER"].split(",")
     
+  TASK_INPROGRESS   = ENV["TASK_INPROGRESS"]
+  TASK_COMPLETED    = ENV["TASK_COMPLETED"]
+    
   belongs_to :project
   belongs_to :feature
   belongs_to :user, :foreign_key=>:assigned_to
